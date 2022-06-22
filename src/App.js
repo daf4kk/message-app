@@ -14,22 +14,25 @@ function App() {
   const [users, setUsers] = useState(
     [
       {
-        id: 0,
+        id: '58q1q2p6',
         name: 'Andrey',
         email: 'qwerty@mail.ru',
-        password: 'qwerty'
+        password: 'qwerty',
+        avatarSettings: ['A','214,38,200, .4','214,38,200']
       },
       {
-        id: 1,
+        id: 'e748q4oy',
         name: 'Roma',
         email: 'ramenCisco@mail.ru',
-        password: '123'
+        password: '123',
+        avatarSettings: ['R','210,204,129, .4','210,204,129']
       },
       {
-        id: 2,
+        id: 'y89r3yo',
         name: 'Ilya',
         email: 'ilyazxc@mail.ru',
-        password: 'zxc'
+        password: 'zxc',
+        avatarSettings: ['I','26,141,112, .4','26,141,112']
       }
     ]
 

@@ -27,7 +27,6 @@ function Login({users, setActiveUser}){        //Не забывать про д
         setForm({...form, [e.target.name] : e.target.value});
     }
 
-
     const checkForValidate = () =>{
         const {email, password} = form;
 

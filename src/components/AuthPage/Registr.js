@@ -5,8 +5,11 @@ import './Registr.css';
 import closedEye from '../icons/closedEye.png';
 import openedEye from '../icons/openedEye.png';
 import warning from '../icons/warning.png';
-
+import avatarGenerator from '../avatarGenerator';
 import {Link} from 'react-router-dom';
+
+//Generators
+import idGenetator from '../idGenerator';
 
 function Registr({users, setUsers}){
     
@@ -72,13 +75,21 @@ function Registr({users, setUsers}){
             //Генерация id для нового пользователя путём считывания имеющихся аккаунтов в бд
             //Подготовка отправки нащего пользователя в бд
 
-            const allUsersLength = users.length;     
-            const idForUser = allUsersLength;       // !!
+            // const allUsersLength = users.length;     
+            // const idForUser = allUsersLength;       // !!
+            let idForUser = idGenetator();
+            if (users.find(user => user.id === idForUser)){
+                console.log('рофл')
+                idForUser = idGenetator();
+            }
+            const avatarSettings = avatarGenerator(name);
+            const {logoSym, logoColor, backgroundColor} = avatarSettings;
             const newUser = {
                 id: idForUser,
                 name: name,
                 email: email,
-                password: password
+                password: password,
+                avatarSettings: [logoSym, logoColor, backgroundColor]
             }
             // В localStorage можно хранить только строки
             const newUserInJSON = JSON.stringify(newUser);

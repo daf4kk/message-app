@@ -8,10 +8,10 @@ import FriendsWindow from './FriendsWindow';
 
 
 
-function Main(){
+function Main({users, activeUser}){
     return (
         <div className='main'>
-            <FriendsWindow/>
+            <FriendsWindow users = {users} activeUser = {activeUser}/>
         </div>
     )
 }

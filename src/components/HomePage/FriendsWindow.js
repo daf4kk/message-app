@@ -4,11 +4,12 @@ import './FriendsWindow.css';
 
 import friends from './imgs/friends.png';
 import userImg from './imgs/romaGroup.png';
-import activeUser from './imgs/activeUser.png';
 import options from './imgs/options.png'
 
 
-function FriendsWindow(){
+function FriendsWindow({users, activeUser}){
+    const {avatarSettings, name, id} = activeUser;
+    const [logoSym, logoColor, backgroundColor] = avatarSettings;
     return (
         <div className='friends-window'>
             <div className='block-info'>
@@ -38,14 +39,19 @@ function FriendsWindow(){
                 </ul>
             </div>
             <div className='active-user-info'>
-                <div className = 'user-avatar-name'>
-                    <img src = {activeUser} alt = 'active-user-avatar'></img>
-                    <p className='user-name'>Татьяна Ивановна</p>
+                <div className = 'user-avatar-name'>    
+                    {/* <img src = {activeUser} alt = 'active-user-avatar'></img> */}
+                    {/* <div className='avatarFromProps' style = {{backgroundColor: `rgb(${backgroundColor})` }}><p style = {{color: `rgba(${logoColor})`}}>{logoSym}</p></div> */}
+                    <div className='avatarFromProps' style = {{backgroundColor: `rgba(${logoColor})` }}>
+                        <p style = {{color: `rgba(${backgroundColor})`}}>{logoSym}</p>
+                    </div>
+                    {/* <div className='avatarFromProps' style = {{backgroundColor: `rgb(${backgroundColor})`, color: `rgba${logoColor}`}}><p>{logoSym}</p></div> */}
+                    <p className='user-name'>{name}</p>
                 </div>
                 <div className='options'>
                     <img src = {options} alt = 'options'></img>
                 </div>
-                <p className='active-user-id'>@qwertyzxc</p>
+                <p className='active-user-id'>@{id}</p>
             </div>
         </div>
     )
