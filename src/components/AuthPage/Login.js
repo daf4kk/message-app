@@ -4,7 +4,11 @@ import openedEye from '../icons/openedEye.png';
 import warning from '../icons/warning.png';
 import './Login.css';
 
+
+
+
 import {Link} from 'react-router-dom';
+
 
 function Login({users, setActiveUser}){        //Не забывать про деструктуризацию!
 
@@ -44,29 +48,26 @@ function Login({users, setActiveUser}){        //Не забывать про д
         }else{
             setStatus()
         }
-        //Проверяем наличие пользователя в бд по email
-        const doesEmailValid = users.find(user => user.email === email)       //users.users. так как мы передаём в props users : [{...}, {...}, {...}]
-        // а в props это ОБЪЕКТ, тоесть него находится users : [{...}, {...}, {...}], тоесть мы деструктуризировали в самом начале его и у нас остался users : [{...}, {...}, {...}],
-        //значит перед перебором нужно сначала перейти в него чтоб осталось [{...}, {...}, {...}]
-        // !doesEmailValid ? setErrors(() => ({...errors, uncorrectEmail: true })) : setErrors(() => ({...errors, uncorrectEmail: false }));
-        
+        const doesEmailValid = users.find(user => user.email === email)
+
         if(!doesEmailValid){        //doesEmailValid - объект пользователя которого мы нашли по email
             setStatus(
                 <div className='error-block'><img src = {warning} alt = 'warning'></img><p className='error'>Неправильная почта</p></div>
             );   
             return
-        }else{
+        }else{  
             setStatus()
         }
-        //ПАРОЛЬ ПРОВЕРЯЕТСЯ НЕПРАВИЛЬНО
         if (doesEmailValid.password !== password){     //doesEmailValid - объект пользователя которого мы нашли по email
             setStatus(
                 <div className='error-block'><img src = {warning} alt = 'warning'></img><p className='error'>Неправильный пароль</p></div>
                
             );
-        }else{
+        }else{  //Если всё хорошо:
             setStatus(<p className='succes'>Пользователь успешно авторизирован</p>);
             setActiveUser(doesEmailValid);
+            console.log('User is loged in')
+            
         }   
     }
     return (
@@ -99,8 +100,8 @@ function Login({users, setActiveUser}){        //Не забывать про д
                                 onChange = {changeHandler}
                                 >   
                                 </input>
-                                {/* <img src = {require('./closedEye.png')}></img> */}
-                                <img 
+                                
+                                <img
                                 src = {typeOfEye} alt = 'eye'
                                 onClick={()=> {setPrivate(!isPrivate)}}
                                 ></img> 
