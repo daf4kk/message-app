@@ -89,7 +89,9 @@ function Registr({users, setUsers}){
                 name: name,
                 email: email,
                 password: password,
-                avatarSettings: [logoSym, logoColor, backgroundColor]
+                avatarSettings: [logoSym, logoColor, backgroundColor],
+                city: 'Москва',
+                stampUrl: 'Europe/Moscow'
             }
             // В localStorage можно хранить только строки
             const newUserInJSON = JSON.stringify(newUser);

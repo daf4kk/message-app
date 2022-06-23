@@ -2,6 +2,7 @@
     width: 250px;
     height: 937px;
     border-right: 3px solid black;
+    position: absolute;
 }
 
 .block-info{
@@ -61,9 +62,9 @@
 
 .active-user-info{
     position: absolute;
-    bottom: 0;
+    bottom: 2px;
     width: 250px;
-    height: 80px;
+    height: 110px;
     color: #DCE4E7;
     background-color: rgba(0,0,0, .2);
 
@@ -79,7 +80,7 @@
 .user-avatar-name{
     display: flex;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-left: 5px;
 }
 .avatarFromProps{
@@ -120,4 +121,129 @@
 .options img{
    height: 30px;
    width: 30px;
+}
+
+.options-list{
+    position: relative;
+    z-index: 3;
+    top: -130px;
+    left: -130px;
+    width: 300px;
+    height: 105px;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0,0,0,.5);
+    
+}
+
+.options-list div{
+    width: 140px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+
+.changeTimeStamp{
+    transition: 0.2s;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.changeTimeStamp:hover{
+    color: #FF9E14;
+    background-color: rgba(148, 151, 153, .2);
+}
+
+.change-city{
+    border-bottom: 2px solid black;
+}
+
+.cities-list{
+    width: 100px;
+    height: 200px;
+    border: 2px solid black;
+    background-color: rgba(0,0,0, .5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 45px;
+    top: -277px;
+    transition: 0.2s;
+}
+.list-city{
+    width: 100px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+.list-city:hover{
+    color:#FF9E14;
+    background-color: rgba(148, 151, 153, .2);
+}
+
+.active-city{
+    color: #FF9E14;
+}
+
+
+.logout{
+    transition: 0.2s;
+}
+.logout p{
+    font-weight: 500;
+    color: rgba(245, 14, 14, .8);
+}
+
+.logout:hover{
+    background-color: rgba(148, 151, 153, .2);
+}
+
+.time-stamp{
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 50px;
+    margin-top: -25px;
+}
+.city{
+    color: #FF9E14;
+    cursor: pointer;
+    
+}
+.user-time-zone{
+    position: absolute;
+    top: 70px;
+    width: 128px;
+    left: 5px;
+    color: #FF9E14;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blink-animation{
+    
+    animation: blink 1000ms alternate infinite;
+}
+@keyframes blink {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}
+    
+
+.user-city{
+    margin-left: 5px;
 }

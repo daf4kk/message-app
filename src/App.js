@@ -18,21 +18,27 @@ function App() {
         name: 'Andrey',
         email: 'qwerty@mail.ru',
         password: 'qwerty',
-        avatarSettings: ['A','214,38,200, .4','214,38,200']
+        avatarSettings: ['A','214,38,200, .4','214,38,200'],
+        city: 'Чикаго',
+        stampUrl: 'America/Chicago'
       },
       {
         id: 'e748q4oy',
         name: 'Roma',
         email: 'ramenCisco@mail.ru',
         password: '123',
-        avatarSettings: ['R','210,204,129, .4','210,204,129']
+        avatarSettings: ['R','210,204,129, .4','210,204,129'],
+        city: 'Киев',
+        stampUrl: 'Europe/Kiev'
       },
       {
         id: 'y89r3yo',
         name: 'Ilya',
         email: 'ilyazxc@mail.ru',
         password: 'zxc',
-        avatarSettings: ['I','26,141,112, .4','26,141,112']
+        avatarSettings: ['I','26,141,112, .4','26,141,112'],
+        city: 'Красноярск',
+        stampUrl: 'Asia/Krasnoyarsk'
       }
     ]
 
@@ -63,7 +69,7 @@ function App() {
                 {/* если activeUser имеется, то перенаправляем на home, иначе логин*/}
                 <Route path = '/' element = {activeUser ? <Navigate to = '/home'/> : <Login users = {users} setActiveUser = {setActiveUser}/>}></Route>
                 <Route path = '/registration' element = {<Registr users = {users} setUsers = {setUsers}/>}></Route>
-                <Route path = '/home' element = {activeUser ? <HomePage users = {users} activeUser = {activeUser}/> : <Navigate to = '/'/>}></Route>
+                <Route path = '/home' element = {activeUser ? <HomePage users = {users} activeUser = {activeUser} setActiveUser = {setActiveUser}/> : <Navigate to = '/'/>}></Route>
             </Routes>
     </>
   );
