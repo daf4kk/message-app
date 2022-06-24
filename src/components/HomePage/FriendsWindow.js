@@ -13,12 +13,11 @@ function FriendsWindow({users, activeUser, setActiveUser}){
     const [citiesListDisplay, setCitiesListDisplay] = useState('none')
     const [timeStamp, setStamp] = useState('');
     const date = timeStamp.substr(0, 10);
-    const minutes = timeStamp.substr(11,2);
-    const seconds = timeStamp.substr(14,2);
+    const hours = timeStamp.substr(11,2);
+    const minutes = timeStamp.substr(14,2);
     //props
     const {avatarSettings, name, id, city, stampUrl} = activeUser;
     const [logoSym, logoColor, backgroundColor] = avatarSettings;
-
 
     
     async function setTimeStamp(url){
@@ -34,20 +33,25 @@ function FriendsWindow({users, activeUser, setActiveUser}){
 
 
     useEffect( () =>{
+        
         window.addEventListener('keydown', (e) => {
             if (e.code === 'Escape'){
                 setCitiesListDisplay('none');
                 setOptionsDisplay('none');
             }
         });
-
+        console.log('DidUpdate')
+        // setTimeStamp(stampUrl);
+        // setInterval(() => {setTimeStamp(stampUrl)}, 60000);
         setTimeStamp(stampUrl);
-        setInterval(() => {setTimeStamp(stampUrl)}, 60000);
-
+        const interval = setInterval(() => {setTimeStamp(stampUrl)}, 60000);
+           
         return () => {
+            clearInterval(interval);
+            console.log('cleared')
             
         }
-    },[]);  // Не забывать про [] !!!, теперь у меня не обновляется 24/7
+    },[activeUser]);  // Не забывать про [] !!!, в него прописывается то, что нам нужно отслеживать при изменений
 
 
     return (
@@ -92,12 +96,11 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                     <img 
                     src = {options} alt = 'options'
                     onClick = {(e) => { 
-                        if (e.target !== document.querySelector('.options-list')){
-                        }
                         if (optionsDisplay === 'none'){
                             setOptionsDisplay('flex');
                         }else{
                             setOptionsDisplay('none');
+                            setCitiesListDisplay('none');
                         }
                     }}
                     ></img>
@@ -119,27 +122,51 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                     </div>
                     <div className='cities-list' style = {{display: `${citiesListDisplay}`}}>
                             <div className='list-city active-city'
-                            onClick = {()=> {setTimeStamp('Europe/Moscow')}}
+                            onClick = {()=> {
+                                setTimeStamp('Europe/Moscow');
+                                setActiveUser({...activeUser, city: 'Москва' , stampUrl: 'Europe/Moscow' })
+                                console.log(activeUser);
+                            }}
                             >Москва</div>
 
                             <div className='list-city'
-                            onClick = {()=> {setTimeStamp('Europe/Kiev')}}
+                            onClick = {()=> {
+                                setTimeStamp('Europe/Kiev')
+                                setActiveUser({...activeUser, city: 'Киев' , stampUrl: 'Europe/Kiev' })
+                                console.log(activeUser);
+                            }}
                             >Киев</div>
 
                             <div className='list-city'
-                            onClick = {()=> {setTimeStamp('Asia/Omsk')}}
+                            onClick = {()=> {
+                                setTimeStamp('Asia/Omsk')
+                                setActiveUser({...activeUser, city: 'Омск' , stampUrl: 'Asia/Omsk' })
+                                console.log(activeUser);
+                            }}
                             >Омск</div>
 
                             <div className='list-city'
-                            onClick = {()=> {setTimeStamp('Asia/Krasnoyarsk')}}
+                            onClick = {()=> {
+                                setTimeStamp('Asia/Krasnoyarsk')
+                                setActiveUser({...activeUser, city: 'Красноярск' , stampUrl: 'Asia/Krasnoyarsk' })
+                                console.log(activeUser);
+                            }}
                             >Красноярск</div>
 
                             <div className='list-city'
-                            onClick = {()=> {setTimeStamp('America/Chicago')}}
+                            onClick = {()=> {
+                                setTimeStamp('America/Chicago')
+                                setActiveUser({...activeUser, city: 'Чикаго' , stampUrl: 'America/Chicago' })
+                                console.log(activeUser);
+                            }}
                             >Чикаго</div>
 
                             <div className='list-city'
-                            onClick = {()=> {setTimeStamp('Europe/Minsk')}}
+                            onClick = {()=> {
+                                setTimeStamp('Europe/Minsk')
+                                setActiveUser({...activeUser, city: 'Минск' , stampUrl: 'Europe/Minsk' })
+                                console.log(activeUser);
+                            }}
                             >Минск</div>
                                       
                     </div>
@@ -149,7 +176,8 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                     <p className='user-city'>Ваш город: <span className = 'city'>{city}</span></p>
                     <div className = 'user-time-zone'>
                         <p className='date'>{date}</p>
-                        <p className='time'>{minutes}<span className='blink-animation'>:</span>{seconds}</p>
+                        <p className='time'>{hours}<span className='blink-animation'>:</span>{minutes}</p>
+
                         
                     </div>
                 </div>

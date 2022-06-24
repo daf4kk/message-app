@@ -99,9 +99,7 @@ function Registr({users, setUsers}){
 
             setUsers([...users, newUser]);
             console.log('User was registred');
-            return
-
-            
+            return   
         }
     }
 
