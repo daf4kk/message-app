@@ -108,14 +108,22 @@
     margin-top: -20px;
     margin-left: 55px;
 }
-
+.options-wrapper{
+    width: 1920px;
+    height: 937px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .options{
     width: 35px;
     height: 45px;
     position: absolute;
     display: flex;
-    right: 10px;
-    top: 25px;
+    left: 275px;
+    bottom: 50px;
     cursor: pointer;
 }
 .options img{

@@ -58,7 +58,7 @@ function App() {
         if (duplicateCheck === false){
           users.push(parsedUser);
         }
-        console.log(activeUser);
+       
     }
   }, [users]); //[] проверка на прошлые props 
 
