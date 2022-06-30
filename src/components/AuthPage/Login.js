@@ -66,7 +66,6 @@ function Login({users, setActiveUser}){        //Не забывать про д
             setStatus(<p className='succes'>Пользователь успешно авторизирован</p>);
             setActiveUser(doesEmailValid);
             console.log('User is loged in')
-            
         }   
     }
     return (

@@ -8,7 +8,7 @@ import FriendsWindow from './FriendsWindow';
 
 
 
-function Main({users, activeUser,setActiveUser}){
+function Main({users, activeUser,setActiveUser, setAuthorized}){
     return (
         <div className='main'>
             <FriendsWindow users = {users} activeUser = {activeUser} setActiveUser = {setActiveUser}/>

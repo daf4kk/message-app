@@ -11,6 +11,7 @@ import HomePage from './components/HomePage/HomePage';
 
 function App() {
   const [activeUser, setActiveUser] = useState();
+  const [doesUserAuthorised, setAuthorized] = useState(false);
   const [users, setUsers] = useState(
     [
       {
@@ -58,6 +59,18 @@ function App() {
         if (duplicateCheck === false){
           users.push(parsedUser);
         }
+        //Проверяем авторизирован ли уже пользователь
+        // const doesAuthorised = localStorage.getItem('doesAuthorised');
+        // console.log(`authed is ${doesAuthorised}`);
+        // if (doesAuthorised === 'true'){
+        //     console.log(`${doesAuthorised}`);
+        //     setAuthorized(true);
+        //     // setActiveUser(userFromLocalStorage);     //Не нужно передавать объект пользователя ибо он запихивается в activeUser и из за этого при смене города у нас приходит старый объект
+        //     //(просто добавить новый useState который будет true/false)
+        // }else{
+        //   console.log('not')
+        //   setAuthorized(false);
+        // }
        
     }
   }, [users]); //[] проверка на прошлые props 

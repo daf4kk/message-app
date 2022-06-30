@@ -143,7 +143,12 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                         </div>
                         <div 
                         className='logout'
-                        onClick = {() => {setActiveUser(0)}}
+                        onClick = {() => {
+                            
+                            setActiveUser(0)
+
+                            
+                        }}
                         >
                             <p>Выйти из аккаунта</p>
                         </div>
@@ -151,49 +156,98 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                     <div className='cities-list' style = {{display: `${citiesListDisplay}`}}>
                             <div className='list-city active-city'
                             onClick = {(e)=> {
-                                setActiveUser({...activeUser, city: 'Москва' , stampUrl: 'Europe/Moscow' })
+                                // setActiveUser({...activeUser, city: 'Москва' , stampUrl: 'Europe/Moscow' })
                                 changeActiveTown(e);
                                 closeOptions();
+                                 //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
+                                console.log(`User${id}`);
+                                const transformedUserObj = {...userObjFromLocalStorage, city: 'Москва', stampUrl: 'Europe/Moscow'}
+                                localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
+                                console.log(`transormed ${transformedUserObj}`);
+                                //Найти пользователя в бд (при моунте он там появляется) и в нём же заменить города сразу
+                                setActiveUser({...activeUser, city: 'Москва' , stampUrl: 'Europe/Moscow' })
+
                             }}
                             >Москва</div>
 
                             <div className='list-city'
                             onClick = {(e)=> {
-                                setActiveUser({...activeUser, city: 'Киев' , stampUrl: 'Europe/Kiev' })
+                                
                                 changeActiveTown(e);
                                 closeOptions();
+                                //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
+                                console.log(`User${id}`);
+                                const transformedUserObj = {...userObjFromLocalStorage, city: 'Киев', stampUrl: 'Europe/Kiev'}
+                                localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
+                                console.log(`transormed ${transformedUserObj}`);
+                                
+                                setActiveUser({...activeUser, city: 'Киев' , stampUrl: 'Europe/Kiev' })
                             }}
                             >Киев</div>
 
                             <div className='list-city'
                             onClick = {(e)=> {
-                                setActiveUser({...activeUser, city: 'Омск' , stampUrl: 'Asia/Omsk' })
+                                
                                 changeActiveTown(e);
                                 closeOptions();
+                                //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
+                                console.log(`User${id}`);
+                                const transformedUserObj = {...userObjFromLocalStorage, city: 'Омск', stampUrl: 'Asia/Omsk'}
+                                localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
+                                console.log(`transormed ${transformedUserObj}`);
+
+                                setActiveUser({...activeUser, city: 'Омск' , stampUrl: 'Asia/Omsk' })
                             }}
                             >Омск</div>
 
                             <div className='list-city'
                             onClick = {(e)=> {
-                                setActiveUser({...activeUser, city: 'Красноярск' , stampUrl: 'Asia/Krasnoyarsk' })
+                                
                                 changeActiveTown(e);
                                 closeOptions();
+                                //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
+                                console.log(`User${id}`);
+                                const transformedUserObj = {...userObjFromLocalStorage, city: 'Красноярск', stampUrl: 'Asia/Krasnoyarsk'}
+                                localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
+                                console.log(`transormed ${transformedUserObj}`);
+
+                                setActiveUser({...activeUser, city: 'Красноярск' , stampUrl: 'Asia/Krasnoyarsk' })
                             }}
                             >Красноярск</div>
 
                             <div className='list-city'
                             onClick = {(e)=> {
-                                setActiveUser({...activeUser, city: 'Чикаго' , stampUrl: 'America/Chicago' })
+                                
                                 changeActiveTown(e);
                                 closeOptions();
+                                //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
+                                console.log(`User${id}`);
+                                const transformedUserObj = {...userObjFromLocalStorage, city: 'Чикаго', stampUrl: 'America/Chicago'}
+                                localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
+                                console.log(`transormed ${transformedUserObj}`);
+
+                                setActiveUser({...activeUser, city: 'Чикаго' , stampUrl: 'America/Chicago' })
                             }}
                             >Чикаго</div>
 
                             <div className='list-city'
                             onClick = {(e)=> {
-                                setActiveUser({...activeUser, city: 'Минск' , stampUrl: 'Europe/Minsk' })
+                                
                                 changeActiveTown(e);
                                 closeOptions();
+                                //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
+                                console.log(`User${id}`);
+                                const transformedUserObj = {...userObjFromLocalStorage, city: 'Минск', stampUrl: 'Europe/Minsk'}
+                                localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
+                                console.log(`transormed ${transformedUserObj}`);
+
+                                setActiveUser({...activeUser, city: 'Минск' , stampUrl: 'Europe/Minsk' })
                             }}
                             >Минск</div>
                                       

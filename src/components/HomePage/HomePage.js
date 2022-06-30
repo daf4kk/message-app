@@ -7,6 +7,7 @@ import UserGroups from './UserGroups';
 import Main from './Main';
 
 function HomePage({users, activeUser, setActiveUser}){
+
     return (
         <div className='home-page'>
             <UserGroups/>
