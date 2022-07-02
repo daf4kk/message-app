@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import closedEye from '../icons/closedEye.png';
 import openedEye from '../icons/openedEye.png';
 import warning from '../icons/warning.png';
@@ -65,6 +65,7 @@ function Login({users, setActiveUser}){        //Не забывать про д
         }else{  //Если всё хорошо:
             setStatus(<p className='succes'>Пользователь успешно авторизирован</p>);
             setActiveUser(doesEmailValid);
+            localStorage.setItem('prevUser', JSON.stringify(doesEmailValid));
             console.log('User is loged in')
         }   
     }

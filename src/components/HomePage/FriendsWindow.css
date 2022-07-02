@@ -120,10 +120,10 @@
 .options{
     width: 35px;
     height: 45px;
-    position: absolute;
+    position: fixed;
     display: flex;
     left: 275px;
-    bottom: 50px;
+    top: 850px;
     cursor: pointer;
 }
 .options img{
@@ -134,7 +134,7 @@
 .options-list{
     position: relative;
     z-index: 3;
-    top: -130px;
+    top: -120px;
     left: -130px;
     width: 300px;
     height: 105px;
@@ -182,7 +182,7 @@
     align-items: center;
     position: absolute;
     left: 45px;
-    top: -277px;
+    top: -266px;
     transition: 0.2s;
 }
 .list-city{

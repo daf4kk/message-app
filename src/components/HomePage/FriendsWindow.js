@@ -144,10 +144,9 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                         <div 
                         className='logout'
                         onClick = {() => {
-                            
                             setActiveUser(0)
-
-                            
+                            window.location.reload()  // Нужно для localStorage ибо иначе он не обновляет город нашего user`a из localStorage при выходе из аккаунта и входе в него без перезагрузки                        
+                            localStorage.removeItem('prevUser');    // localStorage лагает то ли что (если через F12 смотреть, то он или не обновляется (prevUser), или не удаляется, ХОТЯ РАБОТАЕТ ВСЁ ПРАВИЛЬНО)
                         }}
                         >
                             <p>Выйти из аккаунта</p>
@@ -156,16 +155,15 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                     <div className='cities-list' style = {{display: `${citiesListDisplay}`}}>
                             <div className='list-city active-city'
                             onClick = {(e)=> {
-                                // setActiveUser({...activeUser, city: 'Москва' , stampUrl: 'Europe/Moscow' })
                                 changeActiveTown(e);
                                 closeOptions();
                                  //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
-                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
-                                console.log(`User${id}`);
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`)); //Меняем свойства user`a в localStorage
                                 const transformedUserObj = {...userObjFromLocalStorage, city: 'Москва', stampUrl: 'Europe/Moscow'}
                                 localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
-                                console.log(`transormed ${transformedUserObj}`);
-                                //Найти пользователя в бд (при моунте он там появляется) и в нём же заменить города сразу
+                                
+                                // Меняем свойства нашего авторизироввнного пользователя в localStorage и cамом реакте (видимо придётся работать с объектами в паре)
+                                localStorage.setItem('prevUser', JSON.stringify(transformedUserObj)); // При перезагрузке страницы в activeUser идёт prevUser, тоесть считывается тот что в localStorage
                                 setActiveUser({...activeUser, city: 'Москва' , stampUrl: 'Europe/Moscow' })
 
                             }}
@@ -177,28 +175,27 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                                 changeActiveTown(e);
                                 closeOptions();
                                 //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
-                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
-                                console.log(`User${id}`);
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`)); //Меняем свойства user`a в localStorage
                                 const transformedUserObj = {...userObjFromLocalStorage, city: 'Киев', stampUrl: 'Europe/Kiev'}
                                 localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
-                                console.log(`transormed ${transformedUserObj}`);
                                 
+                                // Меняем свойства нашего авторизироввнного пользователя в localStorage и cамом реакте (видимо придётся работать с объектами в паре)
+                                localStorage.setItem('prevUser', JSON.stringify(transformedUserObj)); // При перезагрузке страницы в activeUser идёт prevUser, тоесть считывается тот что в localStorage
                                 setActiveUser({...activeUser, city: 'Киев' , stampUrl: 'Europe/Kiev' })
                             }}
                             >Киев</div>
 
                             <div className='list-city'
                             onClick = {(e)=> {
-                                
                                 changeActiveTown(e);
                                 closeOptions();
                                 //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
-                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
-                                console.log(`User${id}`);
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`)); //Меняем свойства user`a в localStorage
                                 const transformedUserObj = {...userObjFromLocalStorage, city: 'Омск', stampUrl: 'Asia/Omsk'}
                                 localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
-                                console.log(`transormed ${transformedUserObj}`);
-
+                                
+                                // Меняем свойства нашего авторизироввнного пользователя в localStorage и cамом реакте (видимо придётся работать с объектами в паре)
+                                localStorage.setItem('prevUser', JSON.stringify(transformedUserObj)); // При перезагрузке страницы в activeUser идёт prevUser, тоесть считывается тот что в localStorage
                                 setActiveUser({...activeUser, city: 'Омск' , stampUrl: 'Asia/Omsk' })
                             }}
                             >Омск</div>
@@ -209,13 +206,13 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                                 changeActiveTown(e);
                                 closeOptions();
                                 //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
-                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
-                                console.log(`User${id}`);
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`)); //Меняем свойства user`a в localStorage
                                 const transformedUserObj = {...userObjFromLocalStorage, city: 'Красноярск', stampUrl: 'Asia/Krasnoyarsk'}
                                 localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
-                                console.log(`transormed ${transformedUserObj}`);
-
-                                setActiveUser({...activeUser, city: 'Красноярск' , stampUrl: 'Asia/Krasnoyarsk' })
+                                
+                                // Меняем свойства нашего авторизироввнного пользователя в localStorage и cамом реакте (видимо придётся работать с объектами в паре)
+                                localStorage.setItem('prevUser', JSON.stringify(transformedUserObj));   // При перезагрузке страницы в activeUser идёт prevUser, тоесть считывается тот что в localStorage
+                                setActiveUser({...activeUser, city: 'Красноярск' , stampUrl: 'Asia/Krasnoyarsk' }) 
                             }}
                             >Красноярск</div>
 
@@ -225,28 +222,27 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                                 changeActiveTown(e);
                                 closeOptions();
                                 //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
-                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
-                                console.log(`User${id}`);
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`)); //Меняем свойства user`a в localStorage
                                 const transformedUserObj = {...userObjFromLocalStorage, city: 'Чикаго', stampUrl: 'America/Chicago'}
                                 localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
-                                console.log(`transormed ${transformedUserObj}`);
-
+                                
+                                // Меняем свойства нашего авторизироввнного пользователя в localStorage и cамом реакте (видимо придётся работать с объектами в паре)
+                                localStorage.setItem('prevUser', JSON.stringify(transformedUserObj)); // При перезагрузке страницы в activeUser идёт prevUser, тоесть считывается тот что в localStorage
                                 setActiveUser({...activeUser, city: 'Чикаго' , stampUrl: 'America/Chicago' })
                             }}
                             >Чикаго</div>
 
                             <div className='list-city'
                             onClick = {(e)=> {
-                                
                                 changeActiveTown(e);
                                 closeOptions();
                                 //Меняем в localStorage наш основной город  (Работать будет только для зарегистрированных пользователей ("не боты") )
-                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));
-                                console.log(`User${id}`);
+                                const userObjFromLocalStorage = JSON.parse(localStorage.getItem(`User${id}`));  //Меняем свойства user`a в localStorage
                                 const transformedUserObj = {...userObjFromLocalStorage, city: 'Минск', stampUrl: 'Europe/Minsk'}
                                 localStorage.setItem(`User${id}`, JSON.stringify(transformedUserObj));
-                                console.log(`transormed ${transformedUserObj}`);
-
+                                
+                                // Меняем свойства нашего авторизироввнного пользователя в localStorage и cамом реакте (видимо придётся работать с объектами в паре)
+                                localStorage.setItem('prevUser', JSON.stringify(transformedUserObj));    // При перезагрузке страницы в activeUser идёт prevUser, тоесть считывается тот что в localStorage
                                 setActiveUser({...activeUser, city: 'Минск' , stampUrl: 'Europe/Minsk' })
                             }}
                             >Минск</div>
