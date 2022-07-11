@@ -90,6 +90,7 @@ function Registr({users, setUsers}){
                 email: email,
                 password: password,
                 avatarSettings: [logoSym, logoColor, backgroundColor],
+                friends: [],
                 city: 'Москва',
                 stampUrl: 'Europe/Moscow'
             }

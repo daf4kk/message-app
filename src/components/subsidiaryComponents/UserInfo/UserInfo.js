@@ -224,7 +224,16 @@ function UserInfo({users, activeUser, setActiveUser}){
                 
                     <p className='active-user-id'>@{id}</p>
                     <div className='time-stamp'>
-                        <p className='user-city'>Ваш город: <span className = 'city'>{city}</span></p>
+                        <p className='user-city'>Ваш город: <span className = 'city'
+                        onClick = {() =>{
+                          if (optionsDisplay === 'none'){
+                            setCitiesListDisplay('flex');
+                            setOptionsDisplay('flex');
+                          }else{
+                            closeOptions();
+                          }
+                        }}
+                        >{city}</span></p>
                         <div className = 'user-time-zone'>
                             <p className='date'>{date}</p>
                             <p className='time'>{hours}<span className='blink-animation'>:</span>{minutes}</p>

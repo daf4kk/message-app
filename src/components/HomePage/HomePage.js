@@ -13,7 +13,7 @@ function HomePage({users, activeUser, setActiveUser}){
     return (
         <div className='home-page'>
             <UserGroups/>
-            <Main users = {users}/>
+            <Main users = {users} setActiveUser = {setActiveUser} activeUser = {activeUser}/>
             <UserInfo activeUser = {activeUser} setActiveUser = {setActiveUser}/>
         </div>
     )

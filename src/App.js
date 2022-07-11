@@ -20,7 +20,10 @@ function App() {
         password: 'qwerty',
         avatarSettings: ['A','214,38,200, .4','214,38,200'],
         city: 'Чикаго',
-        stampUrl: 'America/Chicago'
+        stampUrl: 'America/Chicago',
+        friends: [
+          'e748q4oy'
+        ]
       },
       {
         id: 'e748q4oy',
@@ -29,7 +32,11 @@ function App() {
         password: '123',
         avatarSettings: ['R','210,204,129, .4','210,204,129'],
         city: 'Киев',
-        stampUrl: 'Europe/Kiev'
+        stampUrl: 'Europe/Kiev',
+        friends: [
+          'e748q4oy',
+          'r4o173w2'
+        ]
       },
       {
         id: 'y89r3yo',
@@ -38,35 +45,44 @@ function App() {
         password: 'zxc',
         avatarSettings: ['I','26,141,112, .4','26,141,112'],
         city: 'Красноярск',
-        stampUrl: 'Asia/Krasnoyarsk'
+        stampUrl: 'Asia/Krasnoyarsk',
+        friends: [
+          'e748q4oy',
+          'r4o173w2'
+        ]
       }
     ]
   )
 
   useEffect(() => {
-      for (let i = 0; i < localStorage.length; i++) {   //
-        const userKey = localStorage.key(i);  //Находим название ключа в localStorage под индексом i
-        const JSONUserFromLocalStorage = localStorage.getItem(userKey); //Получаем по ключу выше наше значение ключа (у нас объект внутри ключа является STR)
-        const parsedUser = JSON.parse(JSONUserFromLocalStorage);
-        // users.push(parsedUser);
-        let duplicateCheck = false;
-        for (let i = 0; i < users.length; i++){   // mount срабатывает два раза и добавляет по два одинаковых пользователя из localStorage
-          if (users[i].id === parseInt(parsedUser.id)){    //Поэтому пришлось делать проверку на наличие одинаковых пользоваетелй
-            duplicateCheck = true;
+      if (localStorage.length !== 0){
+        for (let i = 0; i < localStorage.length; i++) {   //
+          const userKey = localStorage.key(i);  //Находим название ключа в localStorage под индексом i
+          const JSONUserFromLocalStorage = localStorage.getItem(userKey); //Получаем по ключу выше наше значение ключа (у нас объект внутри ключа является STR)
+          const parsedUser = JSON.parse(JSONUserFromLocalStorage);
+          // users.push(parsedUser);
+          let duplicateCheck = false;
+          for (let i = 0; i < users.length; i++){   // mount срабатывает два раза и добавляет по два одинаковых пользователя из localStorage
+            if (users[i].id === parseInt(parsedUser.id)){    //Поэтому пришлось делать проверку на наличие одинаковых пользоваетелй
+              duplicateCheck = true;
+            }
           }
-        }
-        if (duplicateCheck === false){
-          users.push(parsedUser);
-        }
-
-        // Проверяем был ли пользователь авторизирован (Запоминаем пользователя при обновлений страницы)
-        const prevUser = localStorage.getItem('prevUser');
-        if (prevUser !== null){   // Проверяем не обновлял ли пользователь страницу
-          setActiveUser(JSON.parse(prevUser));
-        }     
-    }
+          if (duplicateCheck === false){
+            users.push(parsedUser);
+          }
+          
+          // Проверяем был ли пользователь авторизирован (Запоминаем пользователя при обновлений страницы)
+          const prevUser = localStorage.getItem('prevUser');
+          if (prevUser !== null){   // Проверяем не обновлял ли пользователь страницу
+            setActiveUser(JSON.parse(prevUser));
+            
+          }     
+      }
+      console.log(users)
+      
+      }
   }, [users]); //[] проверка на прошлые props 
-  
+
 
   return (
     <>
