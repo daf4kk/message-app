@@ -1,0 +1,72 @@
+.action-with-peoples{
+    position: absolute;
+    left: 313px;
+    border: 2px solid red;
+    width: 1350px;
+    height: 937px;
+    display: flex;
+    justify-content: center;
+}
+
+.sections{
+    position: relative;
+    top: 0;
+    display: flex;
+    width: 1200px;
+    height: 60px;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sections p{
+    font-size: 20px;
+    font-weight: 700;
+}
+.active-section{
+    background-color: rgba(0,0,0, .2);
+    color: #FF9E14;
+    border-radius: 15px;
+}
+section{
+    color: #DCE4E7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    height: 45px;
+    cursor: pointer;
+}
+.title-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-content p{
+    width: 150px;
+    margin-left: 10px;
+    border-right: 4px solid black;
+    color: #DCE4E7;
+    opacity: 0.8; 
+
+}
+
+.title-content img{
+    height: 60px;
+    width: 60px;
+}
+
+
+.add-friend{
+    color: white;
+    background-color: #7FEC34;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    border-radius: 10px;
+    
+}
+
