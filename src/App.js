@@ -10,6 +10,7 @@ import Login from './components/AuthPage/Login';
 import HomePage from './components/HomePage/HomePage';
 
 function App() {
+  const [first, setFirst] = useState(true);
   const [activeUser, setActiveUser] = useState();
   const [users, setUsers] = useState(
     [
@@ -55,7 +56,7 @@ function App() {
   )
 
   useEffect(() => {
-      if (localStorage.length !== 0){
+      if (localStorage.length !== 0 && first === true){
         for (let i = 0; i < localStorage.length; i++) {   //
           const userKey = localStorage.key(i);  //Находим название ключа в localStorage под индексом i
           const JSONUserFromLocalStorage = localStorage.getItem(userKey); //Получаем по ключу выше наше значение ключа (у нас объект внутри ключа является STR)
@@ -72,16 +73,15 @@ function App() {
           }
           
           // Проверяем был ли пользователь авторизирован (Запоминаем пользователя при обновлений страницы)
-          const prevUser = localStorage.getItem('prevUser');
-          if (prevUser !== null){   // Проверяем не обновлял ли пользователь страницу
-            setActiveUser(JSON.parse(prevUser));
-            
-          }     
+          
       }
-      console.log(users)
-      
+      const prevUser = localStorage.getItem('prevUser');
+        if (prevUser !== null){   // Проверяем не обновлял ли пользователь страницу
+          setActiveUser(JSON.parse(prevUser));  
+        }     
+      console.log(users);
       }
-  }, [users]); //[] проверка на прошлые props 
+  }, []); //[] проверка на прошлые props 
 
 
   return (

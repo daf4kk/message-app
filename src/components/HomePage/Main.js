@@ -12,7 +12,7 @@ function Main({users, activeUser,setActiveUser, setAuthorized}){
     return (
         <div className='main'>
             <FriendsWindow users = {users} activeUser = {activeUser} setActiveUser = {setActiveUser}/>
-            <ActionWithPeoples/>
+            <ActionWithPeoples users = {users}/>
         </div>
     )
 }

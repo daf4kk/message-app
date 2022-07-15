@@ -1,0 +1,33 @@
+.all-users-module{
+    position:absolute;
+    width: 1300px;
+    height: 830px;
+    bottom: 0;
+    overflow: auto;
+}
+
+.all-users-user{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid #404346;
+}
+
+.all-users-user-avatar{
+    width: 50px;
+    height: 50px;
+    font-size: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100% ;
+}
+
+.all-users-user-name{
+    color: #DCE4E7;
+    font-size: 18px;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
