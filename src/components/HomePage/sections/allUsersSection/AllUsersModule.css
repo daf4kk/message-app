@@ -12,6 +12,7 @@
     align-items: center;
     height: 70px;
     border-bottom: 1px solid #404346;
+    z-index: 3;
 }
 
 .all-users-user-avatar{
@@ -29,5 +30,13 @@
     font-size: 18px;
     padding-top: 20px;
     padding-left: 10px;
+}
+
+.all-users-user-id{
+    display: none;
+}
+
+.active-id{
+    display: flex;
 }
 

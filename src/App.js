@@ -10,7 +10,6 @@ import Login from './components/AuthPage/Login';
 import HomePage from './components/HomePage/HomePage';
 
 function App() {
-  const [first, setFirst] = useState(true);
   const [activeUser, setActiveUser] = useState();
   const [users, setUsers] = useState(
     [
@@ -56,7 +55,7 @@ function App() {
   )
 
   useEffect(() => {
-      if (localStorage.length !== 0 && first === true){
+      if (localStorage.length !== 0){
         for (let i = 0; i < localStorage.length; i++) {   //
           const userKey = localStorage.key(i);  //Находим название ключа в localStorage под индексом i
           const JSONUserFromLocalStorage = localStorage.getItem(userKey); //Получаем по ключу выше наше значение ключа (у нас объект внутри ключа является STR)
@@ -78,9 +77,27 @@ function App() {
       const prevUser = localStorage.getItem('prevUser');
         if (prevUser !== null){   // Проверяем не обновлял ли пользователь страницу
           setActiveUser(JSON.parse(prevUser));  
+          //Так же в users нужно найти этого prevUser и удалить, так как у меня prevUsers помещается в users
+          // (Так как с find тут особо не поработаешь - приходится перебирать, а не поработаешь так как объекты в js с одинаковыми ключами и значениями в них всё равно не равны)
+          // users.find((user, index) => {
+          //   if (user.id === JSON.parse(prevUser).id){
+          //     // users.splice(index, 1);
+          //     console.log(user.id);
+          //     console.log(JSON.parse(prevUser).id);
+          //     console.log(index)
+          //   }
+          // })
+          const sortedUsers = [];
+          users.filter((user) => {
+            if (user.id !== JSON.parse(prevUser).id){
+              sortedUsers.push(user)
+            }
+          });
+          setUsers([...sortedUsers]);
         }     
-      console.log(users);
+      
       }
+      
   }, []); //[] проверка на прошлые props 
 
 
@@ -89,7 +106,7 @@ function App() {
             <Routes>
               {/* Пускай начальная страница это Login.js */}
                 {/* если activeUser имеется, то перенаправляем на home, иначе логин*/}
-                <Route path = '/' element = {activeUser ? <Navigate to = '/home'/> : <Login users = {users} setActiveUser = {setActiveUser}/>}></Route>
+                <Route path = '/' element = {activeUser ? <Navigate to = '/home'/> : <Login users = {users} setActiveUser = {setActiveUser} setUsers = {setUsers}/>}></Route>
                 <Route path = '/registration' element = {<Registr users = {users} setUsers = {setUsers}/>}></Route>
                 <Route path = '/home' element = {activeUser ? <HomePage users = {users} activeUser = {activeUser} setActiveUser = {setActiveUser}/> : <Navigate to = '/'/>}></Route>
             </Routes>

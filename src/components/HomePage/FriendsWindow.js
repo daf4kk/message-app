@@ -31,7 +31,7 @@ function FriendsWindow({users, activeUser,setActiveUser}){
                
                 return (
                     <>
-                        <li className='user' key = {id}>
+                        <li className='user' key = {`${id}`}>
                         <div className='user-avatar' style = {{backgroundColor: `rgba(${avatarSettings[1]})` }}>
                             <p style = {{color: `rgba(${avatarSettings[2]})`}}>{avatarSettings[0]}</p>
                         </div>

@@ -10,7 +10,7 @@ import './Login.css';
 import {Link} from 'react-router-dom';
 
 
-function Login({users, setActiveUser}){        //Не забывать про деструктуризацию!
+function Login({users, setActiveUser, setUsers}){        //Не забывать про деструктуризацию!
 
     const [anError, setStatus] = useState()
         
@@ -65,6 +65,13 @@ function Login({users, setActiveUser}){        //Не забывать про д
         }else{  //Если всё хорошо:
             setStatus(<p className='succes'>Пользователь успешно авторизирован</p>);
             setActiveUser(doesEmailValid);
+            const sortedUsers = [];
+            users.filter((user) => {
+                if (user.id !== doesEmailValid.id){
+                sortedUsers.push(user)
+                }
+            });
+            setUsers([...sortedUsers]);
             localStorage.setItem('prevUser', JSON.stringify(doesEmailValid));
             console.log('User is loged in')
         }   

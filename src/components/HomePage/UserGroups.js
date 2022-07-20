@@ -13,7 +13,7 @@ function UserGroups(){
                     
                 </Link>
             </div>
-            <ul className='groups'>
+            {/* <ul className='groups'>
                 <li className='group'>
                     <img src = {group} alt = 'Рома'></img>
                 </li>
@@ -27,7 +27,7 @@ function UserGroups(){
                     <img src = {group} alt = 'Рома'></img>
                 </li>
                 
-            </ul>
+            </ul> */}
 
             <div className='add-group'>
                 <h3>+</h3>
