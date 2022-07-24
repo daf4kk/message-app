@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 
 import './ActionWithPeople.css';
 
-import AllUsersModule from './sections/allUsersSection/AllUsersModule';
 
+import SectionContentByType from './sections/allUsersSection/SectionContentByType';
 
 import groupIcon from './imgs/group-icon.png';
 
-function ActionWithPeoples({users}){
+function ActionWithPeoples({users, activeUser}){
     const [sectionModule, setSectionModule] = useState('allUsers');
 
     function setActiveSection(selector){
@@ -54,7 +54,8 @@ function ActionWithPeoples({users}){
                     <p>Добавить в друзья</p>
                 </div>
             </div>
-            <AllUsersModule users = {users}/>
+            <SectionContentByType users = {users} sectionModule = {sectionModule} activeUser = {activeUser}/>
+            
         </div>
     )
 }

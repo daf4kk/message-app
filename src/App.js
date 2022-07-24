@@ -23,6 +23,12 @@ function App() {
         stampUrl: 'America/Chicago',
         friends: [
           'e748q4oy'
+        ],
+        otherRequests: [
+          'e748q4oy'
+        ],
+        ourRequests: [
+          'y89r3yo'
         ]
       },
       {
@@ -36,6 +42,12 @@ function App() {
         friends: [
           'e748q4oy',
           'r4o173w2'
+        ],
+        otherRequests: [
+
+        ],
+        ourRequests: [
+          '58q1q2p6'
         ]
       },
       {
@@ -49,6 +61,12 @@ function App() {
         friends: [
           'e748q4oy',
           'r4o173w2'
+        ],
+        otherRequests: [
+          '58q1q2p6'
+        ],
+        ourRequests: [
+          
         ]
       }
     ]

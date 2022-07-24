@@ -1,7 +1,8 @@
 .action-with-peoples{
     position: absolute;
-    left: 313px;
-    width: 1350px;
+    /* left: 313px; */
+    left: 300px;
+    width: 1250px;
     height: 937px;
     display: flex;
     justify-content: center;

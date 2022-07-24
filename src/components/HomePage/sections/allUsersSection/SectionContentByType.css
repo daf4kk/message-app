@@ -1,0 +1,44 @@
+.section-content-by-type{
+    position:absolute;
+    width: 1200px;
+    height: 830px;
+    bottom: 0;
+    overflow: auto;
+
+}
+
+.section-user{
+    display: flex;
+    align-items: center;
+    height: 70px;
+    border-bottom: 1px solid #404346;
+    z-index: 3;
+    cursor: pointer;
+}
+.section-user:hover{
+   background-color: #222324;     
+}
+
+.section-user-avatar{
+    width: 50px;
+    height: 50px;
+    font-size: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100% ;
+    margin-left: 5px;
+}
+
+.section-user-name{
+    color: #DCE4E7;
+    font-size: 18px;
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.section-warning{
+    color: #DCE4E7;
+    opacity: 0.7;
+    font-size: 24px;
+}
