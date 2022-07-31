@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
+
 import './SectionContentByType.css';
+
 
 
 function SectionContentByType({users ,sectionModule, activeUser}){
@@ -44,6 +46,11 @@ function SectionContentByType({users ,sectionModule, activeUser}){
                     setWarning(<p className='section-warning'>Вы не хотите ни с кем дружить</p>);
                 }
             break;
+
+            case 'addFriend':
+                setWarning('');
+            break;
+
 
             default: 
                 setWarning(<p className='section-warning'>Что то пошло не так</p>);

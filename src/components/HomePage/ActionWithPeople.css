@@ -46,7 +46,8 @@ section{
 .title-content p{
     width: 150px;
     margin-left: 10px;
-    border-right: 4px solid black;
+    border-right: 3px solid rgba(0,0,0, .5);
+    border-radius: 2px;
     color: #DCE4E7;
     opacity: 0.8; 
 

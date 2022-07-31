@@ -4,19 +4,23 @@ import './ActionWithPeople.css';
 
 
 import SectionContentByType from './sections/allUsersSection/SectionContentByType';
+import AddFriendSection from './sections/allUsersSection/AddFriendSection';
 
 import groupIcon from './imgs/group-icon.png';
 
 function ActionWithPeoples({users, activeUser}){
     const [sectionModule, setSectionModule] = useState('allUsers');
 
-    function setActiveSection(selector){
+    function setActiveSectionCss(selector){
         const sections = document.querySelectorAll('.action-with-peoples section');
         sections.forEach((section)=>{
             section.classList.remove('active-section');
         })
-        const shouldBeActive = document.querySelector(`.${selector}`);
-        shouldBeActive.classList.add('active-section');
+        if (selector !== 'none'){
+            const shouldBeActive = document.querySelector(`.${selector}`);
+            shouldBeActive.classList.add('active-section');
+        }
+        
     }
 
     return (
@@ -28,7 +32,7 @@ function ActionWithPeoples({users, activeUser}){
                 </div>
                 <section className='all-users active-section'
                 onClick = {() => {
-                    setActiveSection('all-users');//Функция
+                    setActiveSectionCss('all-users');//Функция
                     setSectionModule('allUsers');//state
                 }}>
                         <p>Все пользователи</p>
@@ -36,7 +40,7 @@ function ActionWithPeoples({users, activeUser}){
 
                 <section className='other-requests'
                 onClick = {() => {
-                    setActiveSection('other-requests');//Функция
+                    setActiveSectionCss('other-requests');//Функция
                     setSectionModule('otherRequests');//state
                 }}>
                         <p>Запросы на дружбу</p>
@@ -44,17 +48,25 @@ function ActionWithPeoples({users, activeUser}){
 
                 <section className='our-requests'
                 onClick = {() => {
-                    setActiveSection('our-requests');//Функция
+                    setActiveSectionCss('our-requests');//Функция
                     setSectionModule('ourRequests');//state
                 }}>
                         <p>Ваши предложения</p>
                 </section>
 
-                <div className='add-friend'>
+                <div className='add-friend'
+                onClick  = { () => { 
+                    setActiveSectionCss('none');
+                    setSectionModule('addFriend');
+                }
+                    
+
+                }>
                     <p>Добавить в друзья</p>
                 </div>
             </div>
             <SectionContentByType users = {users} sectionModule = {sectionModule} activeUser = {activeUser}/>
+            {(sectionModule === 'addFriend' ? <AddFriendSection users = {users}/> : <div></div>)}
             
         </div>
     )
