@@ -8,12 +8,12 @@ import Main from './Main';
 import UserInfo from '../subsidiaryComponents/UserInfo/UserInfo';
 
 
-function HomePage({users, activeUser, setActiveUser}){
+function HomePage({users, activeUser, setActiveUser, setUsers}){
 
     return (
         <div className='home-page'>
             <UserGroups/>
-            <Main users = {users} setActiveUser = {setActiveUser} activeUser = {activeUser}/>
+            <Main users = {users} setActiveUser = {setActiveUser} activeUser = {activeUser} setUsers = {setUsers}/>
             <UserInfo activeUser = {activeUser} setActiveUser = {setActiveUser}/>
         </div>
     )

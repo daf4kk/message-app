@@ -8,7 +8,7 @@ import spinner from './imgs/spinner.gif';
 
 
 
-function FriendsWindow({users, activeUser,setActiveUser}){
+function FriendsWindow({users, activeUser, setActiveUser}){
     
     // const [friendsList, setFriendsList] = useState(<img src = {spinner} alt = 'spinner' className = 'spinner'></img>)
     const [friendsList, setFriendsList] = useState(<p className = 'no-friends'>У вас пока нет друзей</p>)

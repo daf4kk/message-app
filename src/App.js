@@ -15,7 +15,7 @@ function App() {
     [
       {
         id: '58q1q2p6',
-        name: 'Andrey',
+        name: 'admin',
         email: 'qwerty@mail.ru',
         password: 'qwerty',
         avatarSettings: ['A','214,38,200, .4','214,38,200'],
@@ -29,44 +29,6 @@ function App() {
         ],
         ourRequests: [
           'y89r3yo'
-        ]
-      },
-      {
-        id: 'e748q4oy',
-        name: 'Roma',
-        email: 'ramenCisco@mail.ru',
-        password: '123',
-        avatarSettings: ['R','210,204,129, .4','210,204,129'],
-        city: 'Киев',
-        stampUrl: 'Europe/Kiev',
-        friends: [
-          'e748q4oy',
-          'r4o173w2'
-        ],
-        otherRequests: [
-
-        ],
-        ourRequests: [
-          '58q1q2p6'
-        ]
-      },
-      {
-        id: 'y89r3yo',
-        name: 'Ilya',
-        email: 'ilyazxc@mail.ru',
-        password: 'zxc',
-        avatarSettings: ['I','26,141,112, .4','26,141,112'],
-        city: 'Красноярск',
-        stampUrl: 'Asia/Krasnoyarsk',
-        friends: [
-          'e748q4oy',
-          'r4o173w2'
-        ],
-        otherRequests: [
-          '58q1q2p6'
-        ],
-        ourRequests: [
-          
         ]
       }
     ]
@@ -126,7 +88,7 @@ function App() {
                 {/* если activeUser имеется, то перенаправляем на home, иначе логин*/}
                 <Route path = '/' element = {activeUser ? <Navigate to = '/home'/> : <Login users = {users} setActiveUser = {setActiveUser} setUsers = {setUsers}/>}></Route>
                 <Route path = '/registration' element = {<Registr users = {users} setUsers = {setUsers}/>}></Route>
-                <Route path = '/home' element = {activeUser ? <HomePage users = {users} activeUser = {activeUser} setActiveUser = {setActiveUser}/> : <Navigate to = '/'/>}></Route>
+                <Route path = '/home' element = {activeUser ? <HomePage users = {users} activeUser = {activeUser} setActiveUser = {setActiveUser} setUsers = {setUsers}/> : <Navigate to = '/'/>}></Route>
             </Routes>
     </>
   );
