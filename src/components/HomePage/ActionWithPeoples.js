@@ -42,7 +42,8 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
         localStorage.setItem(`User${activeUser.id}`, JSON.stringify(activeUser)); //Изменяем объект нашего пользователя в localStorage для запоминания людей которых мы хотели добавить
         
        // 2) Тому пользователю которого добавляем добавить otherRequests от нас
-       const userForAddInFriendFromLocalStorage = localStorage.getItem(`User${id}`)
+       const userForAddInFriendFromLocalStorage = localStorage.getItem(`User${id}`);
+       console.log(userForAddInFriendFromLocalStorage);
        const otherUser = JSON.parse(userForAddInFriendFromLocalStorage);
        const {otherRequests} = otherUser;
        
@@ -50,6 +51,78 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
        localStorage.setItem(`User${id}`, JSON.stringify(changedUser));
     }
 
+
+    const acceptRequest = (id) => {
+        // 1) Нужно убрать у обоих пользователей заявки в друзья друг к другу
+        console.log(id)  // получаем id пользователя заявку которого собираемся принять
+        const activeUserId = activeUser.id;
+        const activeUserObjFromDB = JSON.parse(localStorage.getItem(`User${activeUserId}`));
+        const ourFutureFriendFromDB = JSON.parse(localStorage.getItem(`User${id}`));
+        // Убрать из листа пользователя
+            //Проверить не хотели ли они добавить друг друга (у обоих пользователей из массива удалить id друг друга)
+        const ourUserSendedRequests = activeUser.ourRequests;
+        const ourUserGottenRequests = activeUser.otherRequests; //100%
+
+        if (ourUserSendedRequests.includes(id)){
+            //Чтоб избежать ошибок из за того что вдруг добавятся несколько id от одного пользователя буду использовать forEach
+            ourUserSendedRequests.forEach((ourRequest, ourRequestUserId) =>{
+                if (ourRequest === id){
+                    ourUserSendedRequests.splice(ourRequestUserId, 1); //Удаляем нашу заявку в друзья тому пользователю что хотим добавить
+                }
+            })
+            console.log(`removed and now its ${ourUserSendedRequests}`);
+        }
+
+        ourUserGottenRequests.forEach((otherRequestsItem, indexOfRequest) => {
+            if (otherRequestsItem === id){
+                ourUserGottenRequests.splice(indexOfRequest, 1)
+            }
+        })
+
+        // Другой пользователь (На заявку которого мы отвечаем)
+        const otherUserSendedRequests = ourFutureFriendFromDB.ourRequests; //100%
+        const otherUserGottenRequests = ourFutureFriendFromDB.otherRequests; 
+        
+        if (otherUserGottenRequests.includes(activeUserId)){    //Добавлял ли меня он чтоб очистить
+            otherUserGottenRequests.forEach((otherRequest, otherRequestUserId) => {
+                if (otherRequest === activeUserId){
+                    otherUserGottenRequests.splice(otherRequestUserId, 1);
+                }                    
+            })
+        }
+
+        otherUserSendedRequests.forEach((sendedRequest, requestId) => {
+            if (sendedRequest === activeUserId){
+                otherUserSendedRequests.splice(requestId);
+            }
+        })
+        const newActiveUserObj = {...activeUser, otherRequests: ourUserSendedRequests, ourRequests: ourUserSendedRequests }
+        setActiveUser({...newActiveUserObj});
+        localStorage.setItem('prevUser', JSON.stringify(newActiveUserObj));
+        localStorage.setItem(`User${activeUserId}`, JSON.stringify(newActiveUserObj));
+
+
+        const newOtherUserObj = {...ourFutureFriendFromDB, otherRequests: otherUserGottenRequests, ourRequests: otherUserSendedRequests}
+
+        localStorage.setItem(`User${id}`, JSON.stringify(newOtherUserObj));
+        console.log('один раз не пидорас')
+
+
+
+        console.log('...')
+        //ourUserSendedRequests готов
+        //ourUserGottenRequests готов
+        //Почистили входящие и выходящие заявки от активного пользователя
+
+
+        
+
+        // 2) Добавить обоих пользователей друг к другу в друзья
+
+
+
+
+    }
 
     return (
         <div className='action-with-peoples'>
@@ -99,8 +172,16 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
             setActiveUser = {setActiveUser} 
             sectionModule = {sectionModule} 
             //При передаче функций не забывать про передачу и аргументов (ниже), иначе при вызове их просто напросто не будет
-            addOurRequests = {(id) => addOurRequests(id)}/> 
-            {(sectionModule === 'addFriend' ? <AddFriendSection users = {users} setUsers = {setUsers} activeUser = {activeUser} setActiveUser = {setActiveUser}/> : <div></div>)}
+            acceptRequest = {(id) => acceptRequest(id)}/> 
+
+            {/* Проверяем не выбрал ли пользователь секцию с добалвением в друзья */}
+            {(sectionModule === 'addFriend' ? <AddFriendSection 
+            users = {users} 
+            setUsers = {setUsers} 
+            activeUser = {activeUser} 
+            setActiveUser = {setActiveUser} 
+            addOurRequests = {(id) => addOurRequests(id)}
+            /> : <div></div>)}
             
         </div>
     )

@@ -4,7 +4,7 @@ import './AddFriendSection.css';
 
 import addFriendIcon from '../imgs/invite.png';
 
-function AddFriendSection({users}){
+function AddFriendSection({users, addOurRequests}){
     
     const [peopleHandler, changePeopleHandler] = useState('');
     const [usersList, setUsersList] = useState([])
@@ -45,9 +45,13 @@ function AddFriendSection({users}){
                                     <p style = {{color: `rgba(${avatarSettings[2]})`}}>{avatarSettings[0]}</p>
                                 </div>
                                     <p className = 'section-user-name'>{name}</p>
+                                    
                                     <img className='add-friend-icon' src = {addFriendIcon} alt = 'добавить в друзья'
-                    
+                                    onClick={() => {
+                                        addOurRequests(item.id);        //В этй секций перебор немного другой (если мы прописываем id, то сюда идёт номер элемента из forEach)
+                                    }}
                                     ></img>
+                    
                                     
                             </li>
                         </>

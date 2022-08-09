@@ -16,8 +16,8 @@ function App() {
       {
         id: '58q1q2p6',
         name: 'admin',
-        email: 'qwerty@mail.ru',
-        password: 'qwerty',
+        email: 'admin',
+        password: 'admin',
         avatarSettings: ['A','214,38,200, .4','214,38,200'],
         city: 'Чикаго',
         stampUrl: 'America/Chicago',
@@ -25,10 +25,10 @@ function App() {
           'e748q4oy'
         ],
         otherRequests: [
-          'e748q4oy'
+          
         ],
         ourRequests: [
-          'y89r3yo'
+          
         ]
       }
     ]
