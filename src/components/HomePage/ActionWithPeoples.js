@@ -110,18 +110,21 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
 
 
         console.log('...')
-        //ourUserSendedRequests готов
-        //ourUserGottenRequests готов
-        //Почистили входящие и выходящие заявки от активного пользователя
-
 
         
-
         // 2) Добавить обоих пользователей друг к другу в друзья
-
-
-
-
+        if (!newActiveUserObj.friends.includes(id)){
+            newActiveUserObj.friends.push(id)
+            console.log(`friends are ${newActiveUserObj.friends}`)
+            //prevUser, User${id}
+            localStorage.setItem('prevUser', JSON.stringify(newActiveUserObj));
+            localStorage.setItem(`User${activeUserId}`, JSON.stringify(newActiveUserObj))
+            //ActiveUser
+            setActiveUser({...newActiveUserObj});
+            //otherUser
+            newOtherUserObj.friends.push(activeUserId);
+            localStorage.setItem(`User${id}`, JSON.stringify(newOtherUserObj));
+        }
     }
 
     return (
