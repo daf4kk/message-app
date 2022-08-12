@@ -68,11 +68,7 @@ function SectionContentByType({users, setUsers, activeUser, setActiveUser, secti
                                     <p style = {{color: `rgba(${avatarSettings[2]})`}}>{avatarSettings[0]}</p>
                                 </div>
                                     <p className = 'section-user-name'>{name}</p>
-                                    {/* <img className='add-friend-icon' src = {addFriendIcon} alt = 'добавить в друзья'
-                                    onClick={() => {
-                                        addOurRequests(id);
-                                    }}
-                                    ></img> */}
+
                                     {/* Если у нас секция просмотра запросов на дружбу */}
                                     {sectionModule !== 'allUsers' && sectionModule !== 'ourRequests'? 
                                     <img className='add-friend-icon' src = {plusIcon} alt = 'принять заявку'

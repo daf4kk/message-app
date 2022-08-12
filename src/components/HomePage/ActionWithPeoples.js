@@ -113,7 +113,7 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
 
         
         // 2) Добавить обоих пользователей друг к другу в друзья
-        if (!newActiveUserObj.friends.includes(id)){
+        if (!newActiveUserObj.friends.includes(id)){        //Проверка, нет ли этого пользователя уже в наших друзьях. Если есть, то заявка просто исчезает и друг не дублируется
             newActiveUserObj.friends.push(id)
             console.log(`friends are ${newActiveUserObj.friends}`)
             //prevUser, User${id}

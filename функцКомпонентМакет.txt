@@ -3,6 +3,12 @@ import React from 'react';
 
 
 function Name(){
+
+    useEffect( () =>{
+        
+    }, [])
+
+
     return (
         <div className=''>
             

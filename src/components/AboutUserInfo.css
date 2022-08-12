@@ -1,0 +1,84 @@
+.about-user-info{
+    width: 390px;
+    height: 937px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* left: 1530px; */
+    right: 0;
+    top: 0;
+    border-left: 3px solid black;
+}
+
+.about-user-avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    position: absolute;
+    top: 50px;
+}
+
+.about-user-name{
+    font-size: 40px;
+    position: absolute;
+    top: 170px;
+    color: #DCE4E7;
+    opacity: 0.8;
+}
+
+.subsidiary-info{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 230px;
+    top: 250px;
+    font-size: 20px;
+    color: #DCE4E7;
+    opacity: 0.5;
+}
+
+.about-user-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    width: 260px;
+    position: absolute;
+    top: 350px;
+
+}
+
+
+
+.about-user-write-message{
+    background-color: #FF9E14;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.about-user-write-message:hover{
+    color: white;
+    
+}
+
+.about-user-invite{
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+
+.all-friends-title{
+    color: #DCE4E7;
+    opacity: 0.8;
+    position: absolute;
+    font-size: 18px;
+    left: 20px;
+}

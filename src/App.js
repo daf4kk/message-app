@@ -33,7 +33,7 @@ function App() {
       }
     ]
   )
-
+  const [aboutUser, setAboutUser] = useState({...activeUser});   //Для компонента который показывает о каком пользователе мы хотим что либо узнать
   useEffect(() => {
       if (localStorage.length !== 0){
         for (let i = 0; i < localStorage.length; i++) {   //
@@ -88,7 +88,14 @@ function App() {
                 {/* если activeUser имеется, то перенаправляем на home, иначе логин*/}
                 <Route path = '/' element = {activeUser ? <Navigate to = '/home'/> : <Login users = {users} setActiveUser = {setActiveUser} setUsers = {setUsers}/>}></Route>
                 <Route path = '/registration' element = {<Registr users = {users} setUsers = {setUsers}/>}></Route>
-                <Route path = '/home' element = {activeUser ? <HomePage users = {users} activeUser = {activeUser} setActiveUser = {setActiveUser} setUsers = {setUsers}/> : <Navigate to = '/'/>}></Route>
+                <Route path = '/home' element = {activeUser ? <HomePage 
+                users = {users} 
+                activeUser = {activeUser} 
+                setActiveUser = {setActiveUser} 
+                setUsers = {setUsers}
+                aboutUser = {aboutUser}
+                setAboutUser = {setAboutUser}
+                /> : <Navigate to = '/'/>}></Route>
             </Routes>
     </>
   );
