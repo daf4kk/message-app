@@ -8,7 +8,7 @@ import spinner from './imgs/spinner.gif';
 
 
 
-function FriendsWindow({users, activeUser, setActiveUser}){
+function FriendsWindow({users, activeUser, setActiveUser, setNeededUserId}){
     
     // const [friendsList, setFriendsList] = useState(<img src = {spinner} alt = 'spinner' className = 'spinner'></img>)
     const [friendsList, setFriendsList] = useState(<p className = 'no-friends'>У вас пока нет друзей</p>)
@@ -31,7 +31,11 @@ function FriendsWindow({users, activeUser, setActiveUser}){
                
                 return (
                     <>
-                        <li className='user' key = {`${id}`}>
+                        <li className='user' key = {`${id}`}
+                        onClick = {() => {
+                            console.log('friend click');
+                            setNeededUserId(id)
+                        }}>
                         <div className='user-avatar' style = {{backgroundColor: `rgba(${avatarSettings[1]})` }}>
                             <p style = {{color: `rgba(${avatarSettings[2]})`}}>{avatarSettings[0]}</p>
                         </div>

@@ -8,7 +8,7 @@ import AddFriendSection from './sections/AddFriendSection';
 
 import groupIcon from './imgs/group-icon.png';
 
-function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
+function ActionWithPeoples({users, activeUser, setUsers, setActiveUser, setNeededUserId, addOurRequests}){
     const [sectionModule, setSectionModule] = useState('allUsers');
     function setActiveSectionCss(selector){
         const sections = document.querySelectorAll('.action-with-peoples section');
@@ -22,34 +22,34 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
         
     }
 
-    const addOurRequests = (id) => {    //id в аргументе это идентификатор пользоваетля которому мы хотим оставить заявку
-        // 1) Нужно нашему пользователю добавить ourRequests
-        //activeUser
-        const {ourRequests} = activeUser;
-        let newOurRequests;
-        if (ourRequests.includes(id)){
-            //Если мы УЖЕ отправили запрос пользователю
-            newOurRequests = ourRequests;
-        }else{
-            //Если этого пользователя мы ещё НЕ пытались добавлять
-            ourRequests.push(id);
-            newOurRequests = ourRequests;
-        }
-        setActiveUser({...activeUser, ourRequests: newOurRequests})
-        //prevUser
-        localStorage.setItem('prevUser', JSON.stringify(activeUser));  //Меняем данные prevUser в localStorage
-        //localStorageUser
-        localStorage.setItem(`User${activeUser.id}`, JSON.stringify(activeUser)); //Изменяем объект нашего пользователя в localStorage для запоминания людей которых мы хотели добавить
+    // const addOurRequests = (id) => {    //id в аргументе это идентификатор пользоваетля которому мы хотим оставить заявку
+    //     // 1) Нужно нашему пользователю добавить ourRequests
+    //     //activeUser
+    //     const {ourRequests} = activeUser;
+    //     let newOurRequests;
+    //     if (ourRequests.includes(id)){
+    //         //Если мы УЖЕ отправили запрос пользователю
+    //         newOurRequests = ourRequests;
+    //     }else{
+    //         //Если этого пользователя мы ещё НЕ пытались добавлять
+    //         ourRequests.push(id);
+    //         newOurRequests = ourRequests;
+    //     }
+    //     setActiveUser({...activeUser, ourRequests: newOurRequests})
+    //     //prevUser
+    //     localStorage.setItem('prevUser', JSON.stringify(activeUser));  //Меняем данные prevUser в localStorage
+    //     //localStorageUser
+    //     localStorage.setItem(`User${activeUser.id}`, JSON.stringify(activeUser)); //Изменяем объект нашего пользователя в localStorage для запоминания людей которых мы хотели добавить
         
-       // 2) Тому пользователю которого добавляем добавить otherRequests от нас
-       const userForAddInFriendFromLocalStorage = localStorage.getItem(`User${id}`);
-       console.log(userForAddInFriendFromLocalStorage);
-       const otherUser = JSON.parse(userForAddInFriendFromLocalStorage);
-       const {otherRequests} = otherUser;
+    //    // 2) Тому пользователю которого добавляем добавить otherRequests от нас
+    //    const userForAddInFriendFromLocalStorage = localStorage.getItem(`User${id}`);
+    //    console.log(userForAddInFriendFromLocalStorage);
+    //    const otherUser = JSON.parse(userForAddInFriendFromLocalStorage);
+    //    const {otherRequests} = otherUser;
        
-       const changedUser = {...otherUser, otherRequests: [...otherRequests, activeUser.id]};
-       localStorage.setItem(`User${id}`, JSON.stringify(changedUser));
-    }
+    //    const changedUser = {...otherUser, otherRequests: [...otherRequests, activeUser.id]};
+    //    localStorage.setItem(`User${id}`, JSON.stringify(changedUser));
+    // }
 
 
     const acceptRequest = (id) => {
@@ -175,7 +175,8 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
             setActiveUser = {setActiveUser} 
             sectionModule = {sectionModule} 
             //При передаче функций не забывать про передачу и аргументов (ниже), иначе при вызове их просто напросто не будет
-            acceptRequest = {(id) => acceptRequest(id)}/> 
+            acceptRequest = {(id) => acceptRequest(id)}
+            setNeededUserId = {setNeededUserId}/> 
 
             {/* Проверяем не выбрал ли пользователь секцию с добалвением в друзья */}
             {(sectionModule === 'addFriend' ? <AddFriendSection 
@@ -184,6 +185,7 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser}){
             activeUser = {activeUser} 
             setActiveUser = {setActiveUser} 
             addOurRequests = {(id) => addOurRequests(id)}
+            setNeededUserId = {setNeededUserId}
             /> : <div></div>)}
             
         </div>

@@ -10,6 +10,7 @@ import Login from './components/AuthPage/Login';
 import HomePage from './components/HomePage/HomePage';
 
 function App() {
+  
   const [activeUser, setActiveUser] = useState();
   const [users, setUsers] = useState(
     [
@@ -33,7 +34,8 @@ function App() {
       }
     ]
   )
-  const [aboutUser, setAboutUser] = useState({...activeUser});   //Для компонента который показывает о каком пользователе мы хотим что либо узнать
+  // const [aboutUser, setAboutUser] = useState({...activeUser});   //Для компонента который показывает о каком пользователе мы хотим что либо узнать, передаваться будет id!
+  const [neededUserId, setNeededUserId] = useState(`activeUser.id`);
   useEffect(() => {
       if (localStorage.length !== 0){
         for (let i = 0; i < localStorage.length; i++) {   //
@@ -81,6 +83,38 @@ function App() {
   }, []); //[] проверка на прошлые props 
 
 
+  const addOurRequests = (id) => {    //id в аргументе это идентификатор пользоваетля которому мы хотим оставить заявку
+    // 1) Нужно нашему пользователю добавить ourRequests
+    //activeUser
+    const {ourRequests} = activeUser;
+    let newOurRequests;
+    if (ourRequests.includes(id)){
+        //Если мы УЖЕ отправили запрос пользователю
+        newOurRequests = ourRequests;
+    }else{
+        //Если этого пользователя мы ещё НЕ пытались добавлять
+        ourRequests.push(id);
+        newOurRequests = ourRequests;
+    }
+    setActiveUser({...activeUser, ourRequests: newOurRequests})
+    //prevUser
+    localStorage.setItem('prevUser', JSON.stringify(activeUser));  //Меняем данные prevUser в localStorage
+    //localStorageUser
+    localStorage.setItem(`User${activeUser.id}`, JSON.stringify(activeUser)); //Изменяем объект нашего пользователя в localStorage для запоминания людей которых мы хотели добавить
+    
+   // 2) Тому пользователю которого добавляем добавить otherRequests от нас
+   const userForAddInFriendFromLocalStorage = localStorage.getItem(`User${id}`);
+   console.log(userForAddInFriendFromLocalStorage);
+   const otherUser = JSON.parse(userForAddInFriendFromLocalStorage);
+   const {otherRequests} = otherUser;
+   
+   const changedUser = {...otherUser, otherRequests: [...otherRequests, activeUser.id]};
+   localStorage.setItem(`User${id}`, JSON.stringify(changedUser));
+}
+
+
+
+
   return (
     <>
             <Routes>
@@ -93,8 +127,9 @@ function App() {
                 activeUser = {activeUser} 
                 setActiveUser = {setActiveUser} 
                 setUsers = {setUsers}
-                aboutUser = {aboutUser}
-                setAboutUser = {setAboutUser}
+                neededUserId = {neededUserId}
+                setNeededUserId = {setNeededUserId}
+                addOurRequests = {(id) => addOurRequests(id)}
                 /> : <Navigate to = '/'/>}></Route>
             </Routes>
     </>

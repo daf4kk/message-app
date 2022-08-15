@@ -4,7 +4,7 @@ import './SectionContentByType.css';
 import plusIcon from '../imgs/plus.png';
 
 
-function SectionContentByType({users, setUsers, activeUser, setActiveUser, sectionModule, addOurRequests, acceptRequest}){
+function SectionContentByType({users, setUsers, activeUser, setActiveUser, sectionModule, addOurRequests, acceptRequest, setNeededUserId}){
     const {otherRequests, ourRequests} = activeUser;
     const [usersList, setSectionUsers] = useState();
     const [warning, setWarning] = useState();
@@ -62,7 +62,11 @@ function SectionContentByType({users, setUsers, activeUser, setActiveUser, secti
                     //Всё равно проблемы с ключами почему то (пробовал и к Id пользователей добавлять различные буквы, и i увеличивать (инкрименты делать))
                     return (
                         <>
-                            <li className='section-user' key = {`${id}uss`}>
+                            <li className='section-user' key = {`${id}uss`}
+                            onClick = {() => {
+                                console.log('user click');
+                                setNeededUserId(id)
+                            }}>
                               
                                 <div className='section-user-avatar' style = {{backgroundColor: `rgba(${avatarSettings[1]})` }}>
                                     <p style = {{color: `rgba(${avatarSettings[2]})`}}>{avatarSettings[0]}</p>

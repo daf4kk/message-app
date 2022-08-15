@@ -4,7 +4,7 @@ import './AddFriendSection.css';
 
 import addFriendIcon from '../imgs/invite.png';
 
-function AddFriendSection({users, addOurRequests}){
+function AddFriendSection({users, addOurRequests, setNeededUserId}){
     
     const [peopleHandler, changePeopleHandler] = useState('');
     const [usersList, setUsersList] = useState([])
@@ -36,10 +36,14 @@ function AddFriendSection({users, addOurRequests}){
             }
             setUsersList(users.map((item, id) => {
                 if (ids.includes(id)){
-                    const {avatarSettings,name} = item;
+                    const {avatarSettings,name,id} = item;
                     return (
                         <>
-                            <li className='section-user' key = {`${id}userr`}>
+                            <li className='section-user' key = {`${id}userr`}
+                            onClick = {() => {
+                                console.log('user click');
+                                setNeededUserId(id)
+                            }}>
                               
                                 <div className='section-user-avatar' style = {{backgroundColor: `rgba(${avatarSettings[1]})` }}>
                                     <p style = {{color: `rgba(${avatarSettings[2]})`}}>{avatarSettings[0]}</p>
