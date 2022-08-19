@@ -9,7 +9,6 @@ import ActionWithPeoples from './ActionWithPeoples';
 
 
 function Main({users, activeUser,setActiveUser, setUsers, setNeededUserId, addOurRequests}){
-    console.log(users);
     return (
         <div className='main'>
             <FriendsWindow users = {users} activeUser = {activeUser} setNeededUserId = {setNeededUserId}/>

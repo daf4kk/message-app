@@ -2,8 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 import './FriendsWindow.css';
 
-import friendsIcon from './imgs/friends.png';
-import spinner from './imgs/spinner.gif';
+import friendsIcon from '../imgs/friends.png';
 
 
 
@@ -20,7 +19,7 @@ function FriendsWindow({users, activeUser, setActiveUser, setNeededUserId}){
                 let friendsObjects = [];
             
             while (friendsObjects.length < friends.length){ //friendsObjects.length можно сказать тот же самый i
-                users.find((user) => {  // [friendsObjects.length]
+                users.forEach((user) => {  // [friendsObjects.length]
                     if (user.id === friends[friendsObjects.length]){    
                         friendsObjects.push(user);
                     }

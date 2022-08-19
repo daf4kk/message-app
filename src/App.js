@@ -9,6 +9,7 @@ import Registr from './components/AuthPage/Registr';
 import Login from './components/AuthPage/Login';
 import HomePage from './components/HomePage/HomePage';
 
+
 function App() {
   
   const [activeUser, setActiveUser] = useState();
@@ -34,8 +35,7 @@ function App() {
       }
     ]
   )
-  // const [aboutUser, setAboutUser] = useState({...activeUser});   //Для компонента который показывает о каком пользователе мы хотим что либо узнать, передаваться будет id!
-  const [neededUserId, setNeededUserId] = useState(`activeUser.id`);
+  const [neededUserId, setNeededUserId] = useState(); //был `activeUser.id` почему то. Если будут проблемы то вернуть хвхвх
   useEffect(() => {
       if (localStorage.length !== 0){
         for (let i = 0; i < localStorage.length; i++) {   //
@@ -70,7 +70,7 @@ function App() {
           //   }
           // })
           const sortedUsers = [];
-          users.filter((user) => {
+          users.forEach((user) => {
             if (user.id !== JSON.parse(prevUser).id){
               sortedUsers.push(user)
             }

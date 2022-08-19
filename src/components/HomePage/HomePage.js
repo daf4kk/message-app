@@ -9,12 +9,6 @@ import UserInfo from '../subsidiaryComponents/UserInfo/UserInfo';
 import AboutUserInfo from '../AboutUserInfo';
 
 function HomePage({users, activeUser, setNeededUserId, neededUserId,  setUsers, setActiveUser, addOurRequests}){
-    // console.log(`home is ${JSON.stringify(aboutUser)}`);
-    console.log(activeUser)
-    console.log(JSON.stringify(neededUserId));
-
-    
-
     return (
         <div className='home-page'>
             <UserGroups/>

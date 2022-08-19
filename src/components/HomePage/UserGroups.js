@@ -1,8 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
 import './UserGroups.css'
-import group from './imgs/romaGroup.png';
-import logo from './imgs/logo.png'
+import logo from '../imgs/logo.png'
 function UserGroups(){
     return (
         <div className='user-groups'>

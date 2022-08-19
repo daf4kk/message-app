@@ -45,6 +45,7 @@
 
 
 .friends-list .user{
+    cursor: pointer;
     margin-top: 13px;
     height: 40px;
     width: 300px;

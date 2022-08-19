@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import closedEye from '../icons/closedEye.png';
 import openedEye from '../icons/openedEye.png';
 import warning from '../icons/warning.png';

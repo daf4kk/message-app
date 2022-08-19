@@ -6,7 +6,7 @@ import './ActionWithPeople.css';
 import SectionContentByType from './sections/SectionContentByType';
 import AddFriendSection from './sections/AddFriendSection';
 
-import groupIcon from './imgs/group-icon.png';
+import groupIcon from '../imgs/group-icon.png';
 
 function ActionWithPeoples({users, activeUser, setUsers, setActiveUser, setNeededUserId, addOurRequests}){
     const [sectionModule, setSectionModule] = useState('allUsers');
@@ -22,41 +22,10 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser, setNeede
         
     }
 
-    // const addOurRequests = (id) => {    //id в аргументе это идентификатор пользоваетля которому мы хотим оставить заявку
-    //     // 1) Нужно нашему пользователю добавить ourRequests
-    //     //activeUser
-    //     const {ourRequests} = activeUser;
-    //     let newOurRequests;
-    //     if (ourRequests.includes(id)){
-    //         //Если мы УЖЕ отправили запрос пользователю
-    //         newOurRequests = ourRequests;
-    //     }else{
-    //         //Если этого пользователя мы ещё НЕ пытались добавлять
-    //         ourRequests.push(id);
-    //         newOurRequests = ourRequests;
-    //     }
-    //     setActiveUser({...activeUser, ourRequests: newOurRequests})
-    //     //prevUser
-    //     localStorage.setItem('prevUser', JSON.stringify(activeUser));  //Меняем данные prevUser в localStorage
-    //     //localStorageUser
-    //     localStorage.setItem(`User${activeUser.id}`, JSON.stringify(activeUser)); //Изменяем объект нашего пользователя в localStorage для запоминания людей которых мы хотели добавить
-        
-    //    // 2) Тому пользователю которого добавляем добавить otherRequests от нас
-    //    const userForAddInFriendFromLocalStorage = localStorage.getItem(`User${id}`);
-    //    console.log(userForAddInFriendFromLocalStorage);
-    //    const otherUser = JSON.parse(userForAddInFriendFromLocalStorage);
-    //    const {otherRequests} = otherUser;
-       
-    //    const changedUser = {...otherUser, otherRequests: [...otherRequests, activeUser.id]};
-    //    localStorage.setItem(`User${id}`, JSON.stringify(changedUser));
-    // }
-
-
     const acceptRequest = (id) => {
         // 1) Нужно убрать у обоих пользователей заявки в друзья друг к другу
-        console.log(id)  // получаем id пользователя заявку которого собираемся принять
         const activeUserId = activeUser.id;
-        const activeUserObjFromDB = JSON.parse(localStorage.getItem(`User${activeUserId}`));
+        // const activeUserObjFromDB = JSON.parse(localStorage.getItem(`User${activeUserId}`));
         const ourFutureFriendFromDB = JSON.parse(localStorage.getItem(`User${id}`));
         // Убрать из листа пользователя
             //Проверить не хотели ли они добавить друг друга (у обоих пользователей из массива удалить id друг друга)
@@ -70,7 +39,6 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser, setNeede
                     ourUserSendedRequests.splice(ourRequestUserId, 1); //Удаляем нашу заявку в друзья тому пользователю что хотим добавить
                 }
             })
-            console.log(`removed and now its ${ourUserSendedRequests}`);
         }
 
         ourUserGottenRequests.forEach((otherRequestsItem, indexOfRequest) => {
@@ -105,17 +73,11 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser, setNeede
         const newOtherUserObj = {...ourFutureFriendFromDB, otherRequests: otherUserGottenRequests, ourRequests: otherUserSendedRequests}
 
         localStorage.setItem(`User${id}`, JSON.stringify(newOtherUserObj));
-        console.log('один раз не пидорас')
-
-
-
-        console.log('...')
 
         
         // 2) Добавить обоих пользователей друг к другу в друзья
         if (!newActiveUserObj.friends.includes(id)){        //Проверка, нет ли этого пользователя уже в наших друзьях. Если есть, то заявка просто исчезает и друг не дублируется
             newActiveUserObj.friends.push(id)
-            console.log(`friends are ${newActiveUserObj.friends}`)
             //prevUser, User${id}
             localStorage.setItem('prevUser', JSON.stringify(newActiveUserObj));
             localStorage.setItem(`User${activeUserId}`, JSON.stringify(newActiveUserObj))

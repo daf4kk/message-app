@@ -1,23 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import './AboutUserInfo.css';
-import addFriendIcon from './HomePage/imgs/invite.png';
+
+import addFriendIcon from './imgs/invite.png'
 function AboutUserInfo({neededUserId, users, activeUser, addOurRequests}){
 
     const [da,setDa] = useState({...activeUser}); //Во, должно быть начальное значение потом он как бы считывает еффект и находит именно тот что нам нужен
     useEffect( () =>{
         //Надеюсь завтра быстро вспомню что к чему
-        users.find((user) => {                       
-            // console.log(`about is ${neededUserId}`)
+        users.forEach((user) => {                       
             if (user.id === neededUserId){
                 setDa({...user})
-                console.log(`setted ${JSON.stringify(user)}`);
-                console.log(`wanted to find ${user.id}`)
             }
         });
 
 
     }, [neededUserId]);
-    const {id, name, email, city, avatarSettings, friends} = da;
+    const {name, email, city, avatarSettings, friends} = da;
     // 3 или сколько там
     // так получается тут нужно друзей обрабатывать нет?
     let list = [];
@@ -28,7 +26,12 @@ function AboutUserInfo({neededUserId, users, activeUser, addOurRequests}){
                 list.push(user);
             }
         })
+        
     });
+    if (list.length !== friends.length){    //Так как у нас в users нет активного пользователя,
+        list.push(activeUser)       //то если наш массив с объектами друзей (list) меньше массива из id с друзьями выделенного пользователя (friends)
+                                    //означает что мы либо удалили этого друга из бд (так что нужно быть осторожнее), либо мы просто напросто не нашли объект activeUser`a в users, значит надо его добавить
+    }
     const renderedList = list.map((friendObj) => {
         // const {frienId, friendName, friendAvatarSettings} = friendObj; //Неправильно !
         //Через деструктуризацию по какой то причине просто напросто не работает (блять я такой дебил я же деструктуризирую ну через as какой нибудь поэтому и было undefined...)
@@ -67,7 +70,7 @@ function AboutUserInfo({neededUserId, users, activeUser, addOurRequests}){
             >Написать сообщение</p>
             <img src = {addFriendIcon} alt = 'Добавить в друзья' className='about-user-invite'
             onClick = {()=>{
-                console.log('add friend')
+
                 addOurRequests(da.id)
             }}
             ></img>

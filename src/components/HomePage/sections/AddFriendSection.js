@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import './AddFriendSection.css';
 
-import addFriendIcon from '../imgs/invite.png';
+import addFriendIcon from './invite.png'
 
 function AddFriendSection({users, addOurRequests, setNeededUserId}){
     
@@ -21,13 +21,9 @@ function AddFriendSection({users, addOurRequests, setNeededUserId}){
         let ids = [];
         usersNames.forEach((name, id)=>{
             if (name.includes(peopleHandler)){
-                // console.log(name)
-                // console.log(id)
                 ids.push(id);
-                // console.log(ids)
             }
         })
-        // console.log(`id is ${ids[0]}`)
         if (ids.length !== 0){
             setError()
             const input = document.querySelector('.add-friend-input');

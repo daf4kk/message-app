@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import './SectionContentByType.css';
-import plusIcon from '../imgs/plus.png';
+import plusIcon from './plus.png';
 
 
 function SectionContentByType({users, setUsers, activeUser, setActiveUser, sectionModule, addOurRequests, acceptRequest, setNeededUserId}){
