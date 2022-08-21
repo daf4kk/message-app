@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './AboutUserInfo.css';
 
 import addFriendIcon from './imgs/invite.png'
-function AboutUserInfo({neededUserId, users, activeUser, addOurRequests}){
+function AboutUserInfo({neededUserId, users, activeUser, addOurRequests, setMessageWindowUser}){
 
     const [da,setDa] = useState({...activeUser}); //Во, должно быть начальное значение потом он как бы считывает еффект и находит именно тот что нам нужен
     useEffect( () =>{

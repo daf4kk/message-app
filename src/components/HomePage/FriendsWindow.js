@@ -7,7 +7,7 @@ import friendsIcon from '../imgs/friends.png';
 
 
 
-function FriendsWindow({users, activeUser, setActiveUser, setNeededUserId}){
+function FriendsWindow({users, activeUser, setActiveUser, setNeededUserId, setMessageWindowUser}){
     
     // const [friendsList, setFriendsList] = useState(<img src = {spinner} alt = 'spinner' className = 'spinner'></img>)
     const [friendsList, setFriendsList] = useState(<p className = 'no-friends'>У вас пока нет друзей</p>)
@@ -33,6 +33,7 @@ function FriendsWindow({users, activeUser, setActiveUser, setNeededUserId}){
                         <li className='user' key = {`${id}`}
                         onClick = {() => {
                             console.log('friend click');
+                            setMessageWindowUser({...user});
                             setNeededUserId(id)
                         }}>
                         <div className='user-avatar' style = {{backgroundColor: `rgba(${avatarSettings[1]})` }}>
