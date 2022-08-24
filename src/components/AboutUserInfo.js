@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import './AboutUserInfo.css';
 
 import addFriendIcon from './imgs/invite.png'
-function AboutUserInfo({neededUserId, users, activeUser, addOurRequests, setMessageWindowUser}){
+function AboutUserInfo({setNeededUserId,neededUserId, users, activeUser, addOurRequests, setMessageWindowUser}){
 
     const [da,setDa] = useState({...activeUser}); //Во, должно быть начальное значение потом он как бы считывает еффект и находит именно тот что нам нужен
     useEffect( () =>{
@@ -39,7 +39,10 @@ function AboutUserInfo({neededUserId, users, activeUser, addOurRequests, setMess
         //Видимо только так как сделал я
         return (
             <>
-                <li className='about-user-friend' key = {`${friendObj.id}aboutFriend`}>
+                <li className='about-user-friend' key = {`${friendObj.id}aboutFriend`}
+                onClick = {()=>{
+                    setNeededUserId(friendObj.id)
+                }}>
                 <div className='about-user-user-avatar' style = {{backgroundColor: `rgba(${friendObj.avatarSettings[1]})` }}>
                     <p style = {{color: `rgba(${friendObj.avatarSettings[2]})`}}>{friendObj.avatarSettings[0]}</p>
                 </div>
