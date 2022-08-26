@@ -64,14 +64,15 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser, setNeede
                 otherUserSendedRequests.splice(requestId);
             }
         })
-        const newActiveUserObj = {...activeUser, otherRequests: ourUserSendedRequests, ourRequests: ourUserSendedRequests }
+        activeUser[`${ourFutureFriendFromDB.id}`] = []; //Добавляем нашему пользователю новое свойство, где будет находиться массив с сообщениями
+        const newActiveUserObj = {...activeUser, otherRequests: ourUserSendedRequests, ourRequests: ourUserSendedRequests}
         setActiveUser({...newActiveUserObj});
         localStorage.setItem('prevUser', JSON.stringify(newActiveUserObj));
         localStorage.setItem(`User${activeUserId}`, JSON.stringify(newActiveUserObj));
 
 
         const newOtherUserObj = {...ourFutureFriendFromDB, otherRequests: otherUserGottenRequests, ourRequests: otherUserSendedRequests}
-
+        newOtherUserObj[`${activeUser.id}`] = [];   //Добавляем второму пользователю новое свойство, где будет находиться массив с сообщениями
         localStorage.setItem(`User${id}`, JSON.stringify(newOtherUserObj));
 
         

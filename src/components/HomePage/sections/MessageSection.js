@@ -1,13 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 
 import './MessageSection.css';
 
 import arrow from './left-arrow.png';
-import abstractBacground from './abstract.png';
 
 function MessageSection({activeUser, messageWindowUser, setMessageWindowUser}){
-    const {name, email, avatarSettings, city} = messageWindowUser;
+
+    const [messageHandler, changeMessageHandler] = useState(); 
+    console.log(`da is ${messageHandler}`)
+    const {name, email, avatarSettings, city} = messageWindowUser;      //Это тот пользователь сообщения которому мы хотим отправлять
+
+    //Тоесть логика такова
+
+    // Нам нужно получить свойства с сообщениями у активного юзера и messageWindowUser
+
+    // Далее соединяем эти массивы
+
+    // Ну и перебираем через .map, там условие по условному так сказать type Для определения родителя сообщения
+
+    // !Важно ! В массиве должны храниться объекты, у них должно быть свойство по которому я буду определять, 
+    //отображать данное сообщение как активного пользователя или того, с кем мы общаемся
+
     return (
         <div className='message-section'>
             <div className='message-user-info-block'>
@@ -29,7 +43,7 @@ function MessageSection({activeUser, messageWindowUser, setMessageWindowUser}){
             <div className='messages-window-wrapper'>
                 <div className='messages-window'>
 
-                    <div className='gotten-message message'>
+                    {/* <div className='gotten-message message'>
                         <div className='message-avatar' style = {{backgroundColor: `rgba(${avatarSettings[1]})` }}>
                             <p style = {{color: `rgba(${avatarSettings[2]})`}}>{avatarSettings[0]}</p>
                         </div>
@@ -111,7 +125,7 @@ function MessageSection({activeUser, messageWindowUser, setMessageWindowUser}){
                             <p style = {{color: `rgba(${activeUser.avatarSettings[2]})`}}>{activeUser.avatarSettings[0]}</p>
                         </div>
                         <p className='message-content sended-message-content'>Привет варден</p>
-                    </div>
+                    </div> */}
 
                     
                     
@@ -122,7 +136,9 @@ function MessageSection({activeUser, messageWindowUser, setMessageWindowUser}){
             <form className = 'send-message-form browser-default'
             onSubmit = {(e)=>{
                 e.preventDefault();
-                console.log(`submit`)
+                const inputValue = document.querySelector('.send-message-input').value;
+                console.log(`inputValue is ${inputValue}`);
+                changeMessageHandler(inputValue);
             }}>
                 <input type = 'text' placeholder = 'Напишите сообщение' className = 'browser-default send-message-input'></input>
                 <button type = 'submit' className = 'send-message-button browser-default'

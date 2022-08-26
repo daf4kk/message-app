@@ -6,8 +6,8 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    /* left: 1530px; */
-    right: 0;
+    left: 1530px;
+    /* right: 0; */
     top: 0;
     border-left: 3px solid black;
 }
