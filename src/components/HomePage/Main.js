@@ -19,6 +19,7 @@ function Main({users, activeUser,setActiveUser, setUsers, setNeededUserId, addOu
             activeUser = {activeUser}
             messageWindowUser = {messageWindowUser}
             setMessageWindowUser = {setMessageWindowUser}
+            setActiveUser = {setActiveUser}
             
             /> : <ActionWithPeoples 
             users = {users} 

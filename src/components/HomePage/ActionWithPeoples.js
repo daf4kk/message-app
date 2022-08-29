@@ -88,6 +88,7 @@ function ActionWithPeoples({users, activeUser, setUsers, setActiveUser, setNeede
             newOtherUserObj.friends.push(activeUserId);
             localStorage.setItem(`User${id}`, JSON.stringify(newOtherUserObj));
         }
+        window.location.reload()
     }
 
     return (
