@@ -33,8 +33,8 @@ function Registr({users, setUsers}){
         const {name, email, password} = form;
 
         //Проверка на не валидные поля
-        if (name.length < 3){
-            setStatus(<div className='error-block'><img src = {warning} alt = 'warning'></img><p className='error'>В поле имя должно быть не меньше 4 символов</p></div>);
+        if (name.length < 3 || name.length > 12){
+            setStatus(<div className='error-block'><img src = {warning} alt = 'warning'></img><p className='error'>В поле имя должно быть не меньше 4 символов и не больше 12</p></div>);
             return
         }else{
             setStatus();

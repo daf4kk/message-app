@@ -65,8 +65,7 @@
     transition: 0.3s;
 }
 .about-user-write-message:hover{
-    color: white;
-    
+    color: white;   
 }
 
 .about-user-invite{
@@ -114,4 +113,15 @@
     color: #DCE4E7;
     font-size: 18px;
     margin-left: 5px;
+}
+
+.inactive-button-write-message{
+    background-color: #FF9E14;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+    opacity: 0.3;
+    cursor: auto;
 }

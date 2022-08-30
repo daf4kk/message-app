@@ -4,18 +4,28 @@ import './AboutUserInfo.css';
 import addFriendIcon from './imgs/invite.png'
 function AboutUserInfo({setNeededUserId,neededUserId, users, activeUser, addOurRequests, setMessageWindowUser}){
 
-    const [da,setDa] = useState({...activeUser}); //Во, должно быть начальное значение потом он как бы считывает еффект и находит именно тот что нам нужен
+    const [showUser,setShowUser] = useState({...activeUser}); //Во, должно быть начальное значение потом он как бы считывает еффект и находит именно тот что нам нужен
+    const [doesHeOurFriend, setDoesHeOurFriend] = useState(false);
     useEffect( () =>{
         //Надеюсь завтра быстро вспомню что к чему
         users.forEach((user) => {                       
             if (user.id === neededUserId){
-                setDa({...user})
+                setShowUser({...user});
+                const activeUserFriends = activeUser.friends;
+                const weNeedToCheckForFriends = user.id
+                // includes использовать не получится ибо в js obj1 !== obj 1 в любом случае (в том числе если свойства точь в точь)
+                activeUserFriends.find((activeUserFriend) => {
+                    if (`${activeUserFriend}` === `${weNeedToCheckForFriends}`){    //Преобразуем в строку                                                              
+                        setDoesHeOurFriend(true) 
+                    }else{
+                        setDoesHeOurFriend(false)
+                    }
+                })
             }
         });
 
-
     }, [neededUserId]);
-    const {name, email, city, avatarSettings, friends} = da;
+    const {name, email, city, avatarSettings, friends} = showUser;
     // 3 или сколько там
     // так получается тут нужно друзей обрабатывать нет?
     let list = [];
@@ -34,7 +44,7 @@ function AboutUserInfo({setNeededUserId,neededUserId, users, activeUser, addOurR
     }
     const renderedList = list.map((friendObj) => {
         // const {frienId, friendName, friendAvatarSettings} = friendObj; //Неправильно !
-        //Через деструктуризацию по какой то причине просто напросто не работает (блять я такой дебил я же деструктуризирую ну через as какой нибудь поэтому и было undefined...)
+        //Через деструктуризацию по какой то причине просто напросто не работает (такой дебил я же деструктуризирую нe через as какой нибудь поэтому и было undefined...)
         //но если не так то как...
         //Видимо только так как сделал я
         return (
@@ -52,6 +62,7 @@ function AboutUserInfo({setNeededUserId,neededUserId, users, activeUser, addOurR
             </>
         )
     });
+
     return (
         
         <div className='about-user-info'>
@@ -64,17 +75,23 @@ function AboutUserInfo({setNeededUserId,neededUserId, users, activeUser, addOurR
             <p>{city}</p>
         </div>
         <div className='about-user-buttons'>
-            <p className='about-user-write-message'
-            onClick = { () => {
-                console.log('write msg')
-            }
+            <p className= {doesHeOurFriend ? 'about-user-write-message' : 'inactive-button-write-message'}
+            onClick = { 
+                () =>{
+                    if (doesHeOurFriend){   //Если кнопка активна значит у обоих наших пользователей есть свойства в объекте для сообщений друг для друга
+                        users.forEach((user) => {                       // Тут мы находим объект нашего как оказывается друга (которому мы и хотим отправить какое то сообщение)  
+                            if (user.id === neededUserId){  
+                                setMessageWindowUser({...user});    
+                            }
+                        });
+                    }
+                }
                 
             }
             >Написать сообщение</p>
             <img src = {addFriendIcon} alt = 'Добавить в друзья' className='about-user-invite'
             onClick = {()=>{
-
-                addOurRequests(da.id)
+                addOurRequests(showUser.id)
             }}
             ></img>
         </div>

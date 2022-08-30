@@ -83,7 +83,6 @@ function AddFriendSection({users, addOurRequests, setNeededUserId}){
                         }}
                         >
                         </input>
-                    <button type = 'submit'>Добавить</button>
                 </form>
 
             

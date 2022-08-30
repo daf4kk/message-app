@@ -12,8 +12,8 @@
     position: absolute;
     top: 0;
     display: flex;
-    justify-content: space-between;
-    align-items: space-between;
+    justify-content: center;
+    align-items: center;
     width: 1000px;
     border-bottom: 2px solid #131314;
     padding-bottom: 30px;
