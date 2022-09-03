@@ -28,9 +28,9 @@ function UserGroups(){
                 
             </ul> */}
 
-            <div className='add-group'>
+            {/* <div className='add-group'>
                 <h3>+</h3>
-            </div>
+            </div> */}
                 
         </div>
     )
