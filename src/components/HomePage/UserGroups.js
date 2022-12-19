@@ -12,26 +12,6 @@ function UserGroups(){
                     
                 </Link>
             </div>
-            {/* <ul className='groups'>
-                <li className='group'>
-                    <img src = {group} alt = 'Рома'></img>
-                </li>
-                <li className='group'>
-                    <img src = {group} alt = 'Рома'></img>
-                </li>
-                <li className='group'>
-                    <img src = {group} alt = 'Рома'></img>
-                </li>
-                <li className='group'>
-                    <img src = {group} alt = 'Рома'></img>
-                </li>
-                
-            </ul> */}
-
-            {/* <div className='add-group'>
-                <h3>+</h3>
-            </div> */}
-                
         </div>
     )
 }

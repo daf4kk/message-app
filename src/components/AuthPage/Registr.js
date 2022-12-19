@@ -73,10 +73,8 @@ function Registr({users, setUsers}){
         }else{  //Если всё в порядке:
             setStatus(<p className='succes'>Пользователь успешно зарегистрирован</p>);
             //Генерация id для нового пользователя путём считывания имеющихся аккаунтов в бд
-            //Подготовка отправки нащего пользователя в бд
+            //Подготовка отправки нащего пользователя в 'бд'
 
-            // const allUsersLength = users.length;     
-            // const idForUser = allUsersLength;       // !!
             let idForUser = idGenetator();
             if (users.find(user => user.id === idForUser)){
                 console.log('рофл')

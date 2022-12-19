@@ -35,40 +35,31 @@ function App() {
       }
     ]
   )
-  const [neededUserId, setNeededUserId] = useState(); //был `activeUser.id` почему то. Если будут проблемы то вернуть хвхвх
+  const [neededUserId, setNeededUserId] = useState(); 
   useEffect(() => {
+
       if (localStorage.length !== 0){
         for (let i = 0; i < localStorage.length; i++) {   //
-          const userKey = localStorage.key(i);  //Находим название ключа в localStorage под индексом i
-          const JSONUserFromLocalStorage = localStorage.getItem(userKey); //Получаем по ключу выше наше значение ключа (у нас объект внутри ключа является STR)
-          const parsedUser = JSON.parse(JSONUserFromLocalStorage);
-          // users.push(parsedUser);
-          let duplicateCheck = false;
-          for (let i = 0; i < users.length; i++){   // mount срабатывает два раза и добавляет по два одинаковых пользователя из localStorage
-            if (users[i].id === parseInt(parsedUser.id)){    //Поэтому пришлось делать проверку на наличие одинаковых пользоваетелй
-              duplicateCheck = true;
+          if(localStorage.key(i).includes('User')){
+            const userKey = localStorage.key(i);  //Находим название ключа в localStorage под индексом i
+            const JSONUserFromLocalStorage = localStorage.getItem(userKey); //Получаем по ключу выше наше значение ключа (у нас объект внутри ключа является STR)
+            const parsedUser = JSON.parse(JSONUserFromLocalStorage);
+            let duplicateCheck = false;
+            for (let i = 0; i < users.length; i++){   // mount срабатывает два раза и добавляет по два одинаковых пользователя из localStorage
+              if (users[i].id === parseInt(parsedUser.id)){    //Поэтому пришлось делать проверку на наличие одинаковых пользоваетелй
+                duplicateCheck = true;
+              }
+            }
+            if (duplicateCheck === false){
+              users.push(parsedUser);
             }
           }
-          if (duplicateCheck === false){
-            users.push(parsedUser);
-          }
-          
-          // Проверяем был ли пользователь авторизирован (Запоминаем пользователя при обновлений страницы)
-          
       }
+      // Проверяем был ли пользователь авторизирован (Запоминаем пользователя при обновлений страницы)
       const prevUser = localStorage.getItem('prevUser');
         if (prevUser !== null){   // Проверяем не обновлял ли пользователь страницу
           setActiveUser(JSON.parse(prevUser));  
-          //Так же в users нужно найти этого prevUser и удалить, так как у меня prevUsers помещается в users
-          // (Так как с find тут особо не поработаешь - приходится перебирать, а не поработаешь так как объекты в js с одинаковыми ключами и значениями в них всё равно не равны)
-          // users.find((user, index) => {
-          //   if (user.id === JSON.parse(prevUser).id){
-          //     // users.splice(index, 1);
-          //     console.log(user.id);
-          //     console.log(JSON.parse(prevUser).id);
-          //     console.log(index)
-          //   }
-          // })
+
           const sortedUsers = [];
           users.forEach((user) => {
             if (user.id !== JSON.parse(prevUser).id){
